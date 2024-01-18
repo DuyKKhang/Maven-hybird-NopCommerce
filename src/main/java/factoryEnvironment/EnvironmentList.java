@@ -1,5 +1,5 @@
 package factoryEnvironment;
 
-public class EnvironmentList {
-
+public enum EnvironmentList {
+	DEV, TEST, STAGING, PRODUCT
 }
