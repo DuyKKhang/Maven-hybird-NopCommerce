@@ -7,11 +7,11 @@
 			<parameter name="serverName" value="dev" />
 			<parameter name="browser" value="chrome" />
 
-			<class name="com.nopcommer.testcase.Register" />
+			<class name="com.nopcommer.testcase.Login" />
 		</classes>
 	</test>
 	
-	<test name="Test run Firefox">
+	<!-- <test name="Test run Firefox">
 		<classes>
 			<parameter name="evnName" value="local" />
 			<parameter name="serverName" value="dev" />
@@ -29,5 +29,5 @@
 
 			<class name="com.nopcommer.testcase.Register" />
 		</classes>
-	</test>
+	</test>-->
 </suite> 

@@ -21,7 +21,6 @@
 		<selenium.version>3.141.59</selenium.version>
 		<testng.version>6.14.3</testng.version>
 		<webdrivermanager.version>5.5.3</webdrivermanager.version>
-		<datafaker.version>2.1.0</datafaker.version>
 
 	</properties>
 
@@ -67,9 +66,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>net.datafaker</groupId>
-			<artifactId>datafaker</artifactId>
-			<version>${datafaker.version}</version>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
 		</dependency>
 		
 	</dependencies>

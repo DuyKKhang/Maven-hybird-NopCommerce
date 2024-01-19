@@ -2,40 +2,40 @@ package utilities;
 
 import java.util.Locale;
 
-import net.datafaker.Faker;
+import com.github.javafaker.Faker;
 
 public class DataHelper {
-	private Locale locales = new Locale("en");
-	private Faker fakes = new Faker(locales);
+	private static Locale locales = new Locale("en");
+	private static Faker fakes = new com.github.javafaker.Faker(locales);
 	
 	public static DataHelper getDataHelper() {
 		return new DataHelper();
 	}
 	
-	public String getFirstName() {
+	public static String getFirstName() {
 		return fakes.name().firstName();
 	}
-	public String getLastName() {
+	public static String getLastName() {
 		return fakes.name().lastName();
 	}
 	
-	public String getEmailAddress() {
+	public static String getEmailAddress() {
 		return fakes.internet().emailAddress();
 	}
 	
-	public String getCityName() {
+	public static String getCityName() {
 		return fakes.address().city();
 	}
 
-	public String getPhoneNumber() {
+	public static String getPhoneNumber() {
 		return fakes.phoneNumber().phoneNumber();
 	}
 	
-	public String getAddress() {
+	public static String getAddress() {
 		return fakes.address().streetAddress();
 	}
 	
-	public String getPassWord() {
+	public static String getPassWord() {
 		return fakes.internet().password(9, 12, true, true);
 	}
 }
