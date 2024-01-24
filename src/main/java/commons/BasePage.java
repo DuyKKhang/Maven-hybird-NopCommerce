@@ -133,7 +133,7 @@ public class BasePage {
 		jsExecutor.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style", originalStyle);
 	}
 	
-	public void sleep(long timeSleep)  {
+	public static void sleep(long timeSleep)  {
 		try {
 			Thread.sleep(timeSleep*1000);
 		} catch (InterruptedException e) {

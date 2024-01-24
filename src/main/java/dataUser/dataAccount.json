@@ -1,0 +1,23 @@
+{
+	"name":"Khang",
+	"Customer":{
+		"firstname":"Automation",
+		"lastname":"Fc",
+		"email":"automationfc.vn@gmail.com",
+		"companyName":"Automation FC"
+	},
+	"Address":{
+		"firstName":"Automation",
+		"lastName":"FC",
+		"email":"automationfc.vn@gmail.com",
+		"companyName":"Automation FC",
+		"country":"VietName",
+		"state":"Other (Non Us)",
+		"city":"Da Nang",
+		"address_1":"123/04 Le Lai",
+		"address_2":"234/05 Hai Phong",
+		"zip":"550000",
+		"phone":"0123456789",
+		"faxNumber":"09876542315"
+	}
+}

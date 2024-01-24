@@ -21,10 +21,27 @@ public class HomePageObject extends BasePage{
 	}
 
 	public LoginPageObject clickToLinkLogin() {
-		waitForElementClickable(LoginPageUIs.LOGIN_LINK);
-		clickToElement(LoginPageUIs.LOGIN_LINK);
+		waitForElementClickable(HomePageUIs.LOGIN_LINK);
+		clickToElement(HomePageUIs.LOGIN_LINK);
 		return new PageGeneratorManager().getLoginPageObject(driver);
 	}
+
+	public MyAccountPageObject clickToLinkMyAccount() {
+		waitForElementVisible(HomePageUIs.MY_ACCOUNT_LINK);
+		clickToElement(HomePageUIs.MY_ACCOUNT_LINK);
+		sleep(2);
+		return new PageGeneratorManager().getMyAccountPageObject(driver);
+	}
+
+	public String getTitlePage() {
+		return getTitle();
+	}
+
+	public String getTextLogout() {
+		waitForElementVisible(LoginPageUIs.LINK_LOGOUT);
+		return getTextelement(LoginPageUIs.LINK_LOGOUT);
+	}
+
 	
 	
 }

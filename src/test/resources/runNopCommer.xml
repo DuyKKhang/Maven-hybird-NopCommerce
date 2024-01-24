@@ -7,12 +7,14 @@
 			<parameter name="serverName" value="dev" />
 			<parameter name="browser" value="chrome" />
 
-			<class name="com.nopcommer.testcase.Login" />
+			
+			
+			<class name="com.nopcommer.testcase.MyAccount" />
 		</classes>
 	</test>
 	
 	<!-- <test name="Test run Firefox">
-		<classes>
+		<classes><class name="dataUser.RegisterSuccessful" />
 			<parameter name="evnName" value="local" />
 			<parameter name="serverName" value="dev" />
 			<parameter name="browser" value="firefox" />
