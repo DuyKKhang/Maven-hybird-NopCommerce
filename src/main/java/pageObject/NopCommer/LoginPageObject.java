@@ -43,6 +43,8 @@ public class LoginPageObject extends BasePage{
 		clickToElement(LoginPageUIs.LOGIN_BUTTON);
 		return PageGeneratorManager.getHomePageObject(driver);
 	}
-
-
+	public void clickToButtonLoginSuccessNotCreateDriver() {
+		waitForElementClickable(LoginPageUIs.LOGIN_BUTTON);
+		clickToElement(LoginPageUIs.LOGIN_BUTTON);
+	}
 }

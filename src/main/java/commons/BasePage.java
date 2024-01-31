@@ -16,6 +16,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObject.NopCommer.*;
+import pageUIs.NopCommer.BasePageUIs;
+import pageUIs.NopCommer.HomePageUIs;
 
 public class BasePage {
 	private long longTimeout = GlobalConstants.getGlobalConstants().getLongTimeOut();
@@ -135,7 +138,7 @@ public class BasePage {
 	
 	public static void sleep(long timeSleep)  {
 		try {
-			Thread.sleep(timeSleep*1000);
+			Thread.sleep(timeSleep*300);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -288,7 +291,13 @@ public class BasePage {
 			elementCheck.click();
 		}
 	}
-	
+	protected void checkTheCheckboxOrRadio(String locator, String... dynamic) {
+		WebElement elementCheck = getWebElement(dynamicLocator(locator,dynamic));
+		if(!elementCheck.isSelected()) {
+			elementCheck.click();
+		}
+	}
+
 	protected void uncheckTheCheckboxOrRadio(String locator) {
 		WebElement elementCheck = getWebElement(locator);
 		if(elementCheck.isSelected()) {
@@ -374,7 +383,7 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 	}
-	
+
 	protected String getElementValueByJSXpath( String xpathLocator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		xpathLocator = xpathLocator.replace("xpath=", "");
@@ -446,6 +455,9 @@ public class BasePage {
 	protected String getAttrabuteValue (String locatorType, String attrabuteValue) {
 		return getWebElement(locatorType).getAttribute(attrabuteValue);
 	}
+	protected String getAttrabuteValue (String locatorType, String attrabuteValue, String... dynamic) {
+		return getWebElement(dynamicLocator(locatorType,dynamic)).getAttribute(attrabuteValue);
+	}
 
 	protected String getElementValidationMessage(String locator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -463,7 +475,7 @@ public class BasePage {
 		boolean status = (boolean) jsExecutor.executeScript("return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0", getWebElement(dynamicLocator(locator, dynamicValues)));
 			return status;
 	}
-	
+
 	protected void waitForElementVisible(String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByElement(locator)));
@@ -481,7 +493,18 @@ public class BasePage {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(getByElement(dynamicLocator(locator, dynamicValues))));
 	}
-
+	protected void waitForElementUndisplay(String locatorType) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, shortTimeout);
+		overrideImplicitTimeout( shortTimeout);
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByElement(locatorType)));
+		overrideImplicitTimeout( longTimeout);
+	}
+	protected void waitForElementUndisplay(String locatorType, String...dynamic) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, shortTimeout);
+		overrideImplicitTimeout( shortTimeout);
+		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByElement(dynamicLocator(locatorType, dynamic))));
+		overrideImplicitTimeout( longTimeout);
+	}
 	protected void waitForElementInvisible(String locator) {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByElement(locator)));
@@ -508,6 +531,38 @@ public class BasePage {
 		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByElement(dynamicLocator(locator, dynamicValues))));
 	}
+//_____________________________________
+	public CustomerInfoPageObject clickCustomerInfoPage(){
+		waitForElementVisible(BasePageUIs.CUSTOMER_INFO_LINK);
+		clickToElement(BasePageUIs.CUSTOMER_INFO_LINK);
+		return PageGeneratorManager.getCustomerInfoPageObject(driver);
+	}
+	public AddressesPageObject clickAddressesPage(){
+		waitForElementVisible(BasePageUIs.ADDRESSES_LINK);
+		clickToElement(BasePageUIs.ADDRESSES_LINK);
+		return PageGeneratorManager.getAddressesPageObject(driver);
+	}
+	public ChangePassPageObject clickChangePassPage(){
+		waitForElementVisible(BasePageUIs.CHANGE_PASSWORD_LINK);
+		clickToElement(BasePageUIs.CHANGE_PASSWORD_LINK);
+		return PageGeneratorManager.getChangePassPageObject(driver);
+	}
+	public MyProductReviewsPageObject clickMyProductReviewsPage(){
+		waitForElementVisible(BasePageUIs.MY_PRODUCT_REVIEWS_LINK);
+		clickToElement(BasePageUIs.MY_PRODUCT_REVIEWS_LINK);
+		return PageGeneratorManager.getMyProductReviewsPageObject(driver);
+	}
 
-	
+	public CustomerInfoPageObject clickToLinkMyAccount() {
+		waitForElementVisible(BasePageUIs.MY_ACCOUNT_LINK);
+		clickToElement(BasePageUIs.MY_ACCOUNT_LINK);
+		sleep(2);
+		return new PageGeneratorManager().getCustomerInfoPageObject(driver);
+	}
+
+	public HomePageObject clickLogOut() {
+		waitForElementVisible(BasePageUIs.LOG_OUT_LINK);
+		clickToElement(BasePageUIs.LOG_OUT_LINK);
+		return  PageGeneratorManager.getHomePageObject(driver);
+	}
 }

@@ -2,10 +2,7 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObject.NopCommer.HomePageObject;
-import pageObject.NopCommer.LoginPageObject;
-import pageObject.NopCommer.MyAccountPageObject;
-import pageObject.NopCommer.RegisterPageObject;
+import pageObject.NopCommer.*;
 
 public class PageGeneratorManager {
 	
@@ -21,7 +18,22 @@ public class PageGeneratorManager {
 		return new RegisterPageObject(driver);
 	}
 	
-	public static MyAccountPageObject getMyAccountPageObject(WebDriver driver) {
-		return new MyAccountPageObject(driver);
+	public static CustomerInfoPageObject getCustomerInfoPageObject(WebDriver driver) {
+		return new CustomerInfoPageObject(driver);
+	}
+	public static AddressesPageObject getAddressesPageObject(WebDriver driver) {
+		return new AddressesPageObject(driver);
+	}
+	public static ChangePassPageObject getChangePassPageObject(WebDriver driver) {
+		return new ChangePassPageObject(driver);
+	}
+	public static MyProductReviewsPageObject getMyProductReviewsPageObject(WebDriver driver) {
+		return new MyProductReviewsPageObject(driver);
+	}
+	public static DetailProductPageObject getDetailProductPageObject(WebDriver driver) {
+		return new DetailProductPageObject(driver);
+	}
+	public static ProductReviewPageObject getProductReviewPageObject(WebDriver driver) {
+		return new ProductReviewPageObject(driver);
 	}
 }

@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite parallel="tests" thread-count ="3" name="Run NopCommer">
-	
+	<listeners>
+		<listener class-name="reportConfig.ExtentTestListener"/>
+		<listener class-name="commons.MethodListener"/>
+	</listeners>
+
 	<test name="Test run Chrome">
 		<classes>
 			<parameter name="evnName" value="local" />
 			<parameter name="serverName" value="dev" />
 			<parameter name="browser" value="chrome" />
 
-			
-			
+			<class name="dataUser.RegisterSuccessful" />
 			<class name="com.nopcommer.testcase.MyAccount" />
 		</classes>
 	</test>
-	
+
 	<!-- <test name="Test run Firefox">
-		<classes><class name="dataUser.RegisterSuccessful" />
+		<classes>
 			<parameter name="evnName" value="local" />
 			<parameter name="serverName" value="dev" />
 			<parameter name="browser" value="firefox" />
 
-			<class name="com.nopcommer.testcase.Register" />
+			<class name="dataUser.RegisterSuccessful" />
+			<class name="com.nopcommer.testcase.MyAccount" />
 		</classes>
-	</test>
-	
+	</test>-->
+	<!--
 	<test name="Test run Edge">
 		<classes>
 			<parameter name="evnName" value="local" />

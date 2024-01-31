@@ -10,7 +10,6 @@ public class GlobalConstants {
 	private static GlobalConstants globalInstance;
 	
 	private GlobalConstants() {
-		
 	}
 	
 	public static synchronized GlobalConstants getGlobalConstants() {
@@ -22,13 +21,11 @@ public class GlobalConstants {
 	
 		
 	private final String project_path = System.getProperty("user.dir");
-	
-
-
+	private final String javaVersion = System.getProperty("java.version");
 	private final String uploadFile = project_path + File.separator + "uploadFiles" + File.separator;
-	
+
 	private final long shortTimeOut = 5;
-	private final long longTimeOut = 10;
+	private final long longTimeOut = 15;
 
 	
 	public long getShortTimeOut() {
@@ -41,5 +38,8 @@ public class GlobalConstants {
 	
 	public String getProject_path() {
 		return project_path;
+	}
+	public String getJavaVersion() {
+		return javaVersion;
 	}
 }

@@ -26,14 +26,8 @@ public class HomePageObject extends BasePage{
 		return new PageGeneratorManager().getLoginPageObject(driver);
 	}
 
-	public MyAccountPageObject clickToLinkMyAccount() {
-		waitForElementVisible(HomePageUIs.MY_ACCOUNT_LINK);
-		clickToElement(HomePageUIs.MY_ACCOUNT_LINK);
-		sleep(2);
-		return new PageGeneratorManager().getMyAccountPageObject(driver);
-	}
-
 	public String getTitlePage() {
+		waitForElementVisible(LoginPageUIs.LINK_LOGOUT);
 		return getTitle();
 	}
 
@@ -42,6 +36,11 @@ public class HomePageObject extends BasePage{
 		return getTextelement(LoginPageUIs.LINK_LOGOUT);
 	}
 
-	
-	
+
+	public DetailProductPageObject clickAddToCard() {
+		scrollToElement(HomePageUIs.LOCATOR_CONTIENT_PRODUCT);
+		waitForElementClickable(HomePageUIs.ADD_TO_CARD_BUTTON);
+		clickToElement(HomePageUIs.ADD_TO_CARD_BUTTON);
+		return PageGeneratorManager.getDetailProductPageObject(driver);
+	}
 }

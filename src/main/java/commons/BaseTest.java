@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 
 import factoryEnvironment.EnvironmentList;
 import factoryEnvironment.LocalFactory;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 public class BaseTest{
 	
@@ -97,5 +99,41 @@ public class BaseTest{
 				e.printStackTrace();
 			}
 		}
+	}
+	protected boolean verifyTrue(boolean condition) {
+		boolean pass = true;
+		try {
+			Assert.assertTrue(condition);
+		} catch (Throwable e) {
+			pass = false;
+
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+		}
+		return pass;
+	}
+
+	protected boolean verifyFalse(boolean condition) {
+		boolean pass = true;
+		try {
+			Assert.assertFalse(condition);
+		} catch (Throwable e) {
+			pass = false;
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+		}
+		return pass;
+	}
+
+	protected boolean verifyEquals(Object actual, Object expected) {
+		boolean pass = true;
+		try {
+			Assert.assertEquals(actual, expected);
+		} catch (Throwable e) {
+			pass = false;
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+		}
+		return pass;
 	}
 }
