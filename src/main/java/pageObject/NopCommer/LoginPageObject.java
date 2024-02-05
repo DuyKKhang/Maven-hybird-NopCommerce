@@ -25,7 +25,7 @@ public class LoginPageObject extends BasePage{
 
 	public String getMessageErrorEmail() {
 		waitForElementVisible(LoginPageUIs.MESSAGE_ERROR_EMAIL);
-		return getTextelement(LoginPageUIs.MESSAGE_ERROR_EMAIL);
+		return getTextElement(LoginPageUIs.MESSAGE_ERROR_EMAIL);
 	}
 
 	public void sendkeyTextBox(String dynamic, String textValue ) {
@@ -35,7 +35,7 @@ public class LoginPageObject extends BasePage{
 
 	public String getMessageErrorEmailUnsuccessful() {
 		waitForElementVisible(LoginPageUIs.MESSAGE_ERROR_UNSUCCESSFUL_EMAIL);
-		return getTextelement(LoginPageUIs.MESSAGE_ERROR_UNSUCCESSFUL_EMAIL);
+		return getTextElement(LoginPageUIs.MESSAGE_ERROR_UNSUCCESSFUL_EMAIL);
 	}
 
 	public HomePageObject clickToButtonLoginSuccess() {

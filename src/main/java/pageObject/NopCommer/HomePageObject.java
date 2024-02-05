@@ -33,7 +33,7 @@ public class HomePageObject extends BasePage{
 
 	public String getTextLogout() {
 		waitForElementVisible(LoginPageUIs.LINK_LOGOUT);
-		return getTextelement(LoginPageUIs.LINK_LOGOUT);
+		return getTextElement(LoginPageUIs.LINK_LOGOUT);
 	}
 
 
@@ -43,4 +43,11 @@ public class HomePageObject extends BasePage{
 		clickToElement(HomePageUIs.ADD_TO_CARD_BUTTON);
 		return PageGeneratorManager.getDetailProductPageObject(driver);
 	}
+
+    public AdvencedSearchPageObject clickSearchFooter() {
+		scrollToElement(HomePageUIs.SEARCH_LINK_FOOTER);
+		waitForElementClickable(HomePageUIs.SEARCH_LINK_FOOTER);
+		clickToElement(HomePageUIs.SEARCH_LINK_FOOTER);
+		return PageGeneratorManager.getAdvencedSearchPageObject(driver);
+    }
 }

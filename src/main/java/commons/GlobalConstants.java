@@ -25,7 +25,7 @@ public class GlobalConstants {
 	private final String uploadFile = project_path + File.separator + "uploadFiles" + File.separator;
 
 	private final long shortTimeOut = 5;
-	private final long longTimeOut = 15;
+	private final long longTimeOut = 30;
 
 	
 	public long getShortTimeOut() {

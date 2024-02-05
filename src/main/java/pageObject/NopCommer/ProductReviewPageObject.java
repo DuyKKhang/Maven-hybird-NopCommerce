@@ -13,7 +13,7 @@ public class ProductReviewPageObject extends BasePage {
 
     public String getTitleProduct() {
         waitForElementVisible(ProductReviewPageUIs.TITLE_PRODUCT_LINK);
-        return getTextelement(ProductReviewPageUIs.TITLE_PRODUCT_LINK);
+        return getTextElement(ProductReviewPageUIs.TITLE_PRODUCT_LINK);
     }
 
     public void addReviewTitle(String content) {

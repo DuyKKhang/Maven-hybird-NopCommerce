@@ -12,18 +12,18 @@
 			<parameter name="browser" value="chrome" />
 
 			<class name="dataUser.RegisterSuccessful" />
-			<class name="com.nopcommer.testcase.MyAccount" />
 		</classes>
 	</test>
 
 	<!-- <test name="Test run Firefox">
+	<class name="com.nopcommer.testcase.WishList_Compare_RecentView" />
 		<classes>
 			<parameter name="evnName" value="local" />
 			<parameter name="serverName" value="dev" />
 			<parameter name="browser" value="firefox" />
 
 			<class name="dataUser.RegisterSuccessful" />
-			<class name="com.nopcommer.testcase.MyAccount" />
+			<class name="com.nopcommer.testcase.AdvencedSearch" />
 		</classes>
 	</test>-->
 	<!--

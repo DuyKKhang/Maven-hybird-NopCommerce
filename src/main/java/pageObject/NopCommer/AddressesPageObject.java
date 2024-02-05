@@ -33,6 +33,6 @@ public class AddressesPageObject extends BasePage {
 
     public String getTextVerifyNotLabel(String dynamic) {
         waitForElementVisible(AddressesPageUIs.TEXT_VALUE_VERIFY_NOT_LABEL, dynamic);
-        return getTextelement(AddressesPageUIs.TEXT_VALUE_VERIFY_NOT_LABEL, dynamic);
+        return getTextElement(AddressesPageUIs.TEXT_VALUE_VERIFY_NOT_LABEL, dynamic);
     }
 }

@@ -18,7 +18,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObject.NopCommer.*;
 import pageUIs.NopCommer.BasePageUIs;
-import pageUIs.NopCommer.HomePageUIs;
+import pageUIs.NopCommer.ComputerPageUIs;
 
 public class BasePage {
 	private long longTimeout = GlobalConstants.getGlobalConstants().getLongTimeOut();
@@ -172,7 +172,7 @@ public class BasePage {
 		return driver.findElement(getByElement(locatorType));
 	}
 	
-	private List<WebElement> getWebElements(String locatorType){
+	protected List<WebElement> getWebElements(String locatorType){
 		return driver.findElements(getByElement(locatorType));
 	}
 	
@@ -261,11 +261,11 @@ public class BasePage {
 		}
 	}
 	
-	protected String getTextelement(String locator) {
+	protected String getTextElement(String locator) {
 		return getWebElement(locator).getText();
 	}
-	
-	protected String getTextelement(String locator, String... dynamicValues) {
+
+	protected String getTextElement(String locator, String... dynamicValues) {
 		return getWebElement(dynamicLocator(locator, dynamicValues)).getText();
 	}
 	
@@ -304,7 +304,13 @@ public class BasePage {
 			elementCheck.click();
 		}
 	}
-	
+	protected void uncheckTheCheckboxOrRadio(String locator, String dynamic) {
+		WebElement elementCheck = getWebElement(dynamicLocator(locator, dynamic));
+		if(elementCheck.isSelected()) {
+			elementCheck.click();
+		}
+	}
+
 	protected void checkTheCheckbox_MultipleCheck(String locator) {
 		List<WebElement> elementCheck = getWebElements(locator);
 		for (WebElement itemCheck : elementCheck) {
@@ -325,6 +331,9 @@ public class BasePage {
 	
 	protected boolean isControlDisplayed(String locator) {
 		return getWebElement(locator).isDisplayed();
+	}
+	protected boolean isControlDisplayed(String locator, String... dynamic) {
+		return getWebElement(dynamicLocator(locator, dynamic)).isDisplayed();
 	}
 
 	protected boolean isControlSelected(String locator) {
@@ -351,7 +360,19 @@ public class BasePage {
 		return false;
 		}
 	}
-	
+	protected boolean isUnDisplayed(String locator, String... dynamic) {
+		overrideImplicitTimeout(GlobalConstants.getGlobalConstants().getShortTimeOut());
+		List<WebElement> element = getWebElements(dynamicLocator(locator, dynamic));
+		overrideImplicitTimeout(GlobalConstants.getGlobalConstants().getLongTimeOut());
+		if(element.size()==0) {
+			return true;
+		}else if (element.size() > 0 && !element.get(0).isDisplayed()) {
+			return true;
+		}else {
+		return false;
+		}
+	}
+
 	protected void switchToFrame(String locator) {
 		driver.switchTo().frame(getWebElement(locator));
 	}
@@ -565,4 +586,30 @@ public class BasePage {
 		clickToElement(BasePageUIs.LOG_OUT_LINK);
 		return  PageGeneratorManager.getHomePageObject(driver);
 	}
+
+    public ComputerPageObject clickComputerLinkProduct(String computers) {
+		waitForElementVisible(BasePageUIs.DYNAMIC_LINK_MENU_PRODUCT, computers);
+		clickToElement(BasePageUIs.DYNAMIC_LINK_MENU_PRODUCT, computers);
+		return PageGeneratorManager.getComputerPageObject(driver);
+    }
+
+	public DesktopsPageObject clickLinkProductDesktops(String valueProduct) {
+		waitForElementClickable(ComputerPageUIs.DYNAMIC_COMPUTER_PRODUCT, valueProduct);
+		clickToElement(ComputerPageUIs.DYNAMIC_COMPUTER_PRODUCT, valueProduct);
+
+		return PageGeneratorManager.getDesktopsPageObject(driver);
+	}
+
+    public ShoppingCartPageObject clickShoppingCart() {
+		waitForElementClickable(BasePageUIs.SHOPPING_CART_LINK);
+		clickToElement(BasePageUIs.SHOPPING_CART_LINK);
+
+		return PageGeneratorManager.getShoppingCartPageObject(driver);
+    }
+    public WishlisPageObject clickWishlistLink() {
+		waitForElementClickable(BasePageUIs.WISHLIST_LINK);
+		clickToElement(BasePageUIs.WISHLIST_LINK);
+
+		return PageGeneratorManager.getWishlisPageObject(driver);
+    }
 }

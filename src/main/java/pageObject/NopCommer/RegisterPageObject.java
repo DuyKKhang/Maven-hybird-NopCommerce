@@ -20,7 +20,7 @@ public class RegisterPageObject extends BasePage{
 
 	public String getTextMessageError(String dynamic) {
 		waitForElementVisible(RegisterPageUIs.MESSAGE_ERROR_TEXT,dynamic);
-		return getTextelement(RegisterPageUIs.MESSAGE_ERROR_TEXT, dynamic);
+		return getTextElement(RegisterPageUIs.MESSAGE_ERROR_TEXT, dynamic);
 	}
 
 	public void inputTextbox(String textValue, String dynamic) {
@@ -30,7 +30,7 @@ public class RegisterPageObject extends BasePage{
 
 	public String getTextMessageSuccess() {
 		waitForElementVisible(RegisterPageUIs.MESSAGE_REGISTER_SUCCESS);
-		return getTextelement(RegisterPageUIs.MESSAGE_REGISTER_SUCCESS);
+		return getTextElement(RegisterPageUIs.MESSAGE_REGISTER_SUCCESS);
 	}
 
 	public boolean isDisplyedContinueButton() {
@@ -46,7 +46,7 @@ public class RegisterPageObject extends BasePage{
 
 	public String getTextMessageExists() {
 		waitForElementVisible(RegisterPageUIs.MESSAGE_EMAIL_EXISTS);
-		return getTextelement(RegisterPageUIs.MESSAGE_EMAIL_EXISTS);
+		return getTextElement(RegisterPageUIs.MESSAGE_EMAIL_EXISTS);
 	}
 
 }

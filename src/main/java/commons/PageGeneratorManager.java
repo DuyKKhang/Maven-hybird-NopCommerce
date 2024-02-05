@@ -36,4 +36,22 @@ public class PageGeneratorManager {
 	public static ProductReviewPageObject getProductReviewPageObject(WebDriver driver) {
 		return new ProductReviewPageObject(driver);
 	}
+	public static AdvencedSearchPageObject getAdvencedSearchPageObject(WebDriver driver) {
+		return new AdvencedSearchPageObject(driver);
+	}
+	public static ComputerPageObject getComputerPageObject(WebDriver driver) {
+		return new ComputerPageObject(driver);
+	}
+	public static NotebooksPageObject getNotebooksPageObject(WebDriver driver) {
+		return new NotebooksPageObject(driver);
+	}
+	public static DesktopsPageObject getDesktopsPageObject(WebDriver driver) {
+		return new DesktopsPageObject(driver);
+	}
+	public static WishlisPageObject getWishlisPageObject(WebDriver driver) {
+		return new WishlisPageObject(driver);
+	}
+	public static ShoppingCartPageObject getShoppingCartPageObject(WebDriver driver) {
+		return new ShoppingCartPageObject(driver);
+	}
 }

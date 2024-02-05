@@ -29,7 +29,7 @@ public class CustomerInfoPageObject extends BasePage{
 	}
 	public String getMessageSuccessful() {
 		waitForElementVisible(CustomerInfoPageUIs.MESSAGE_UPDATE_SUCCESSFULLY);
-		return getTextelement(CustomerInfoPageUIs.MESSAGE_UPDATE_SUCCESSFULLY);
+		return getTextElement(CustomerInfoPageUIs.MESSAGE_UPDATE_SUCCESSFULLY);
 	}
 	public String getTextCustomer(String dynamic, String value) {
 		waitForElementVisible(CustomerInfoPageUIs.SENDKY_TEXTBOX,dynamic);

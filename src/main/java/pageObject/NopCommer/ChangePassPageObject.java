@@ -24,7 +24,7 @@ public class ChangePassPageObject extends BasePage {
 
     public String messageChangePassSuccess() {
         waitForElementVisible(ChangePassPageUIs.MESSAGE_CHANGE_PASSWORD_SUCCESS);
-        return getTextelement(ChangePassPageUIs.MESSAGE_CHANGE_PASSWORD_SUCCESS);
+        return getTextElement(ChangePassPageUIs.MESSAGE_CHANGE_PASSWORD_SUCCESS);
     }
 
     public void clickDisableMessage() {
