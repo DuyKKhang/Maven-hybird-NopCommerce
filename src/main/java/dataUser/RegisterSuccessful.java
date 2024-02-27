@@ -28,10 +28,10 @@ public class RegisterSuccessful extends BaseTest{
 		driver = getBrowserDriver(evnName, serverName, browser);
 		homePage = PageGeneratorManager.getHomePageObject(driver);
 
-		firstName 	= UserData.Register.FIRSTNAME;
-		lastName 	= UserData.Register.LASTNAME;
-		email 		= UserData.Register.EMAIL;
-		passWord 	= UserData.Register.PASSWORD;
+		firstName 	 = UserData.Register.FIRSTNAME;
+		lastName 	 = UserData.Register.LASTNAME;
+		email 		 = UserData.Register.EMAIL;
+		passWord 	 = UserData.Register.PASSWORD;
 		confirmPasss = UserData.Register.PASSWORD;
 	}
 	@Test

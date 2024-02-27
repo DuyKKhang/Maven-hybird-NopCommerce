@@ -1,51 +1,13 @@
-1706632992231	geckodriver	INFO	Listening on 127.0.0.1:4204
-1706632992252	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\khduy\\AppData\\Local\\Temp\\rust_mozprofilencDbZj"
+1709023980558	geckodriver	INFO	Listening on 127.0.0.1:33811
+1709023980880	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\khduy\\AppData\\Local\\Temp\\rust_mozprofileOR9wbH"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
-1706632992622	Marionette	INFO	Marionette enabled
+1709023981737	Marionette	INFO	Marionette enabled
 Dynamically enable window occlusion 0
-1706632992903	Marionette	INFO	Listening on port 49340
-Read port: 49340
-1706632993084	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-JavaScript error: https://demo.nopcommerce.com/Plugins/Widgets.NivoSlider/Scripts/jquery.nivo.slider.js?v=nkJnAFgIzTVz5JJR5Ig5gsy7Gs0, line 1: ReferenceError: jQuery is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: AjaxCart is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
+1709023982195	Marionette	INFO	Listening on port 55921
+Read port: 55921
+1709023982485	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://demo.nopcommerce.com."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://demo.nopcommerce.com."
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: AjaxCart is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/login?returnUrl=%2F line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/Plugins/Widgets.NivoSlider/Scripts/jquery.nivo.slider.js?v=nkJnAFgIzTVz5JJR5Ig5gsy7Gs0, line 1: ReferenceError: jQuery is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: AjaxCart is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-JavaScript error: https://demo.nopcommerce.com/ line 1 > injectedScript, line 1: ReferenceError: $ is not defined
-1706633022728	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
-1706633114480	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
-JavaScript error: resource://gre/modules/XULStore.sys.mjs, line 60: Error: Can't find profile directory.
-1706633123560	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
-TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:219:24
-TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:203:10
-interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:468:10
-webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:219:33
-1706633139501	Marionette	INFO	Stopped listening on port 49340
+1709023991901	Marionette	INFO	Stopped listening on port 55921
 Dynamically enable window occlusion 1

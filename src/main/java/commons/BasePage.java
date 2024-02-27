@@ -593,7 +593,7 @@ public class BasePage {
 		return PageGeneratorManager.getComputerPageObject(driver);
     }
 
-	public DesktopsPageObject clickLinkProductDesktops(String valueProduct) {
+	public DesktopsProductPageObject clickLinkProductDesktops(String valueProduct) {
 		waitForElementClickable(ComputerPageUIs.DYNAMIC_COMPUTER_PRODUCT, valueProduct);
 		clickToElement(ComputerPageUIs.DYNAMIC_COMPUTER_PRODUCT, valueProduct);
 
@@ -602,14 +602,19 @@ public class BasePage {
 
     public ShoppingCartPageObject clickShoppingCart() {
 		waitForElementClickable(BasePageUIs.SHOPPING_CART_LINK);
-		clickToElement(BasePageUIs.SHOPPING_CART_LINK);
+		clickToElementByJS(BasePageUIs.SHOPPING_CART_LINK);
 
 		return PageGeneratorManager.getShoppingCartPageObject(driver);
     }
     public WishlisPageObject clickWishlistLink() {
 		waitForElementClickable(BasePageUIs.WISHLIST_LINK);
-		clickToElement(BasePageUIs.WISHLIST_LINK);
-
+		clickToElementByJS(BasePageUIs.WISHLIST_LINK);
+		sleep(1);
 		return PageGeneratorManager.getWishlisPageObject(driver);
+    }
+    public HomePageObject clickHomePage() {
+		waitForElementClickable(BasePageUIs.HOME_PAGE_LINK);
+		clickToElement(BasePageUIs.HOME_PAGE_LINK);
+		return PageGeneratorManager.getHomePageObject(driver);
     }
 }

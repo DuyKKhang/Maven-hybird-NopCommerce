@@ -45,13 +45,19 @@ public class PageGeneratorManager {
 	public static NotebooksPageObject getNotebooksPageObject(WebDriver driver) {
 		return new NotebooksPageObject(driver);
 	}
-	public static DesktopsPageObject getDesktopsPageObject(WebDriver driver) {
-		return new DesktopsPageObject(driver);
+	public static DesktopsProductPageObject getDesktopsPageObject(WebDriver driver) {
+		return new DesktopsProductPageObject(driver);
 	}
 	public static WishlisPageObject getWishlisPageObject(WebDriver driver) {
 		return new WishlisPageObject(driver);
 	}
 	public static ShoppingCartPageObject getShoppingCartPageObject(WebDriver driver) {
 		return new ShoppingCartPageObject(driver);
+	}
+	public static CompareProductsPageObject getCompareProductsPageObject(WebDriver driver) {
+		return new CompareProductsPageObject(driver);
+	}
+	public static RecentlyViewedProductsPageObject getRecentlyViewedProductsPageObject(WebDriver driver) {
+		return new RecentlyViewedProductsPageObject(driver);
 	}
 }

@@ -9,5 +9,6 @@ public class BasePageUIs {
     public final static String MY_ACCOUNT_LINK = "xpath=//a[@class='ico-account']";
     public final static String WISHLIST_LINK = "xpath=//a[@class='ico-wishlist']";
     public final static String SHOPPING_CART_LINK = "xpath=//a[@class='ico-cart']";
+    public final static String HOME_PAGE_LINK = "xpath=//div[@class='header-logo']//a";
     public final static String DYNAMIC_LINK_MENU_PRODUCT = "xpath=//ul[@class='top-menu notmobile']//a[text()='%s ']";
 }
