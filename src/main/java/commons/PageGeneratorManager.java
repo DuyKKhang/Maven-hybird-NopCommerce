@@ -27,6 +27,9 @@ public class PageGeneratorManager {
 	public static ChangePassPageObject getChangePassPageObject(WebDriver driver) {
 		return new ChangePassPageObject(driver);
 	}
+	public static OrdersProductPageObject getOrdersProductPageObject(WebDriver driver) {
+		return new OrdersProductPageObject(driver);
+	}
 	public static MyProductReviewsPageObject getMyProductReviewsPageObject(WebDriver driver) {
 		return new MyProductReviewsPageObject(driver);
 	}
@@ -59,5 +62,8 @@ public class PageGeneratorManager {
 	}
 	public static RecentlyViewedProductsPageObject getRecentlyViewedProductsPageObject(WebDriver driver) {
 		return new RecentlyViewedProductsPageObject(driver);
+	}
+	public static CheckOutPageObject getCheckOutPageObject(WebDriver driver) {
+		return new CheckOutPageObject(driver);
 	}
 }

@@ -138,7 +138,7 @@ public class BasePage {
 	
 	public static void sleep(long timeSleep)  {
 		try {
-			Thread.sleep(timeSleep*300);
+			Thread.sleep(timeSleep*1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -469,10 +469,13 @@ public class BasePage {
 		return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
 	}
 	
-	protected String getElementAttribute( String locatorType, String attributeName) {
-		return getWebElement( locatorType).getAttribute(attributeName);
+	protected String getElementAttribute( String locatorType, String attrabuteName) {
+//		return getWebElement( locatorType).getAttribute(attrabuteName);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		String value = (String) js.executeScript("return arguments[0].value;",getWebElement(locatorType));
+		return value;
 	}
-	
+
 	protected String getAttrabuteValue (String locatorType, String attrabuteValue) {
 		return getWebElement(locatorType).getAttribute(attrabuteValue);
 	}
@@ -617,4 +620,10 @@ public class BasePage {
 		clickToElement(BasePageUIs.HOME_PAGE_LINK);
 		return PageGeneratorManager.getHomePageObject(driver);
     }
+
+	public OrdersProductPageObject clickOrder() {
+		waitForElementClickable(BasePageUIs.ORDERS_LINK);
+		clickToElement(BasePageUIs.ORDERS_LINK);
+		return PageGeneratorManager.getOrdersProductPageObject(driver);
+	}
 }

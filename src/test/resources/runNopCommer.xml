@@ -12,6 +12,8 @@
 			<parameter name="browser" value="firefox" />
 
 			<class name="dataUser.RegisterSuccessful" />
+
+			<class name="com.nopcommer.testcase.Order" />
 		</classes>
 	</test>
 

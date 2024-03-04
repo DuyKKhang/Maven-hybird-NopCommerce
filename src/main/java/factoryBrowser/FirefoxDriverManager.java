@@ -15,6 +15,7 @@ public class FirefoxDriverManager implements BrowserFactory{
 	public WebDriver getBrowserDriver() {
 		WebDriverManager.firefoxdriver().setup();
 		FirefoxOptions firefoxOption = new FirefoxOptions();
+		firefoxOption.addPreference("signon.rememberSignons", false);
 		System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE,"true");
 		System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE,GlobalConstants.getGlobalConstants().getProject_path()+"\\browserLogs\\logsFirefox.txt");
 		

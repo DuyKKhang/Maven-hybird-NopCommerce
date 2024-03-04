@@ -15,7 +15,6 @@ import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -38,7 +37,7 @@ public class WishList_Compare_RecentView extends BaseTest{
 	@BeforeClass
 	public void beforeClass( String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
-
+		driver.manage().window().maximize();
 		homePage = PageGeneratorManager.getHomePageObject(driver);
 
 		email = UserData.Register.EMAIL;
@@ -66,7 +65,7 @@ public class WishList_Compare_RecentView extends BaseTest{
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Add to wishlist");
 		detailProductPage.selectRamDropdown("2 GB");
-		detailProductPage.clickHDDRadioButton();
+		detailProductPage.clickHDDRadioButton("1");
 
 		String nameProduct = detailProductPage.getNameProduct();
 		String skuProduct = detailProductPage.getSkuProduct();
@@ -75,7 +74,7 @@ public class WishList_Compare_RecentView extends BaseTest{
 		detailProductPage.addToWishList();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Verify message add success");
-		verifyEquals(detailProductPage.getMessageAddWsihList(),"The product has been added to your wishlist");
+		verifyEquals(detailProductPage.getMessageAddProduct(),"The product has been added to your wishlist");
 		detailProductPage.closeMessage();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Into wishlist page");
@@ -116,7 +115,7 @@ public class WishList_Compare_RecentView extends BaseTest{
 		desktopsProductPage = computerPage.clickLinkProductDesktops("Desktops");
 		detailProductPage = desktopsProductPage.clickProduct("1");
 		detailProductPage.selectRamDropdown("2 GB");
-		detailProductPage.clickHDDRadioButton();
+		detailProductPage.clickHDDRadioButton("1");
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Add to Wishlist");
 		detailProductPage.addToWishList();

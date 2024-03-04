@@ -73,6 +73,14 @@ public class UserDataMapper {
 		private String phone;
 		@JsonProperty("faxNumber")
 		private String faxNumber;
+		@JsonProperty("cardNumber")
+		private String cardNumber;
+		@JsonProperty("cardCode")
+		private String cardCode;
+		@JsonProperty("expDate_day")
+		private String expDate_day;
+		@JsonProperty("expDate_year")
+		private String expDate_year;
 	}
 
 	public String getAddressFirstName(){
@@ -107,6 +115,18 @@ public class UserDataMapper {
 	}
 	public String getAddressPhone(){
 		return address.phone;
+	}
+	public String getCardNumber(){
+		return address.cardNumber;
+	}
+	public String getCarCode(){
+		return address.cardCode;
+	}
+	public String getExpDate_day(){
+		return address.expDate_day;
+	}
+	public String getExpDate_year(){
+		return address.expDate_year;
 	}
 	public String getAddressFaxNumber(){
 		return address.faxNumber;
