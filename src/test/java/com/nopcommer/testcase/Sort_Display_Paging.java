@@ -2,7 +2,7 @@ package com.nopcommer.testcase;
 
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -10,10 +10,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.NopCommer.ComputerPageObject;
-import pageObject.NopCommer.HomePageObject;
-import pageObject.NopCommer.LoginPageObject;
-import pageObject.NopCommer.NotebooksPageObject;
+import pageObject.NopCommerUser.ComputerPageObject;
+import pageObject.NopCommerUser.HomePageObject;
+import pageObject.NopCommerUser.LoginPageObject;
+import pageObject.NopCommerUser.NotebooksPageObject;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -32,7 +32,7 @@ public class Sort_Display_Paging extends BaseTest{
 	public void beforeClass( String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
 
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
 		email = UserData.Register.EMAIL;
 		passWord = UserData.Register.PASSWORD;

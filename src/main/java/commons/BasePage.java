@@ -16,9 +16,12 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObject.NopCommer.*;
-import pageUIs.NopCommer.BasePageUIs;
-import pageUIs.NopCommer.ComputerPageUIs;
+import pageObject.NopCommerUser.*;
+import pageObject.NopcommerAdmin.CustomersAdminPageObject;
+import pageObject.NopcommerAdmin.DashBoardAdminPageObject;
+import pageObject.NopcommerAdmin.ProductsCatologAdminPageObject;
+import pageUIs.NopCommerUser.BasePageUIs;
+import pageUIs.NopCommerUser.ComputerPageUIs;
 
 public class BasePage {
 	private long longTimeout = GlobalConstants.getGlobalConstants().getLongTimeOut();
@@ -559,71 +562,92 @@ public class BasePage {
 	public CustomerInfoPageObject clickCustomerInfoPage(){
 		waitForElementVisible(BasePageUIs.CUSTOMER_INFO_LINK);
 		clickToElement(BasePageUIs.CUSTOMER_INFO_LINK);
-		return PageGeneratorManager.getCustomerInfoPageObject(driver);
+		return PageGeneratorManagerUser.getCustomerInfoPageObject(driver);
 	}
 	public AddressesPageObject clickAddressesPage(){
 		waitForElementVisible(BasePageUIs.ADDRESSES_LINK);
 		clickToElement(BasePageUIs.ADDRESSES_LINK);
-		return PageGeneratorManager.getAddressesPageObject(driver);
+		return PageGeneratorManagerUser.getAddressesPageObject(driver);
 	}
 	public ChangePassPageObject clickChangePassPage(){
 		waitForElementVisible(BasePageUIs.CHANGE_PASSWORD_LINK);
 		clickToElement(BasePageUIs.CHANGE_PASSWORD_LINK);
-		return PageGeneratorManager.getChangePassPageObject(driver);
+		return PageGeneratorManagerUser.getChangePassPageObject(driver);
 	}
 	public MyProductReviewsPageObject clickMyProductReviewsPage(){
 		waitForElementVisible(BasePageUIs.MY_PRODUCT_REVIEWS_LINK);
 		clickToElement(BasePageUIs.MY_PRODUCT_REVIEWS_LINK);
-		return PageGeneratorManager.getMyProductReviewsPageObject(driver);
+		return PageGeneratorManagerUser.getMyProductReviewsPageObject(driver);
 	}
 
 	public CustomerInfoPageObject clickToLinkMyAccount() {
 		waitForElementVisible(BasePageUIs.MY_ACCOUNT_LINK);
 		clickToElement(BasePageUIs.MY_ACCOUNT_LINK);
 		sleep(2);
-		return new PageGeneratorManager().getCustomerInfoPageObject(driver);
+		return new PageGeneratorManagerUser().getCustomerInfoPageObject(driver);
 	}
 
 	public HomePageObject clickLogOut() {
 		waitForElementVisible(BasePageUIs.LOG_OUT_LINK);
 		clickToElement(BasePageUIs.LOG_OUT_LINK);
-		return  PageGeneratorManager.getHomePageObject(driver);
+		return  PageGeneratorManagerUser.getHomePageObject(driver);
 	}
 
     public ComputerPageObject clickComputerLinkProduct(String computers) {
 		waitForElementVisible(BasePageUIs.DYNAMIC_LINK_MENU_PRODUCT, computers);
 		clickToElement(BasePageUIs.DYNAMIC_LINK_MENU_PRODUCT, computers);
-		return PageGeneratorManager.getComputerPageObject(driver);
+		return PageGeneratorManagerUser.getComputerPageObject(driver);
     }
 
 	public DesktopsProductPageObject clickLinkProductDesktops(String valueProduct) {
 		waitForElementClickable(ComputerPageUIs.DYNAMIC_COMPUTER_PRODUCT, valueProduct);
 		clickToElement(ComputerPageUIs.DYNAMIC_COMPUTER_PRODUCT, valueProduct);
 
-		return PageGeneratorManager.getDesktopsPageObject(driver);
+		return PageGeneratorManagerUser.getDesktopsPageObject(driver);
 	}
 
     public ShoppingCartPageObject clickShoppingCart() {
 		waitForElementClickable(BasePageUIs.SHOPPING_CART_LINK);
 		clickToElementByJS(BasePageUIs.SHOPPING_CART_LINK);
 
-		return PageGeneratorManager.getShoppingCartPageObject(driver);
+		return PageGeneratorManagerUser.getShoppingCartPageObject(driver);
     }
     public WishlisPageObject clickWishlistLink() {
 		waitForElementClickable(BasePageUIs.WISHLIST_LINK);
 		clickToElementByJS(BasePageUIs.WISHLIST_LINK);
 		sleep(1);
-		return PageGeneratorManager.getWishlisPageObject(driver);
+		return PageGeneratorManagerUser.getWishlisPageObject(driver);
     }
     public HomePageObject clickHomePage() {
 		waitForElementClickable(BasePageUIs.HOME_PAGE_LINK);
 		clickToElement(BasePageUIs.HOME_PAGE_LINK);
-		return PageGeneratorManager.getHomePageObject(driver);
+		return PageGeneratorManagerUser.getHomePageObject(driver);
     }
 
 	public OrdersProductPageObject clickOrder() {
 		waitForElementClickable(BasePageUIs.ORDERS_LINK);
 		clickToElement(BasePageUIs.ORDERS_LINK);
-		return PageGeneratorManager.getOrdersProductPageObject(driver);
+		return PageGeneratorManagerUser.getOrdersProductPageObject(driver);
 	}
+
+    public void clickCatalog(String dynamic) {
+		waitForElementVisible(BasePageUIs.MENU_CATALOG_ADMIN,dynamic);
+		clickToElementByJS(BasePageUIs.MENU_CATALOG_ADMIN,dynamic);
+    }
+	public ProductsCatologAdminPageObject clickProductMenuAdmin(String dynamic) {
+		waitForElementAllVisible(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
+		clickToElementByJS(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
+		return PageGeneratorManagerAdmin.getProductsCatologAdminPageObject(driver);
+	}
+	public CustomersAdminPageObject clickCustomerstMenuAdmin(String dynamic) {
+		waitForElementAllVisible(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
+		clickToElement(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
+		return PageGeneratorManagerAdmin.getCustomersAdminPageObject(driver);
+	}
+
+    public DashBoardAdminPageObject clickDashBoard() {
+		waitForElementVisible(BasePageUIs.DASH_BOARD_LINK);
+		clickToElement(BasePageUIs.DASH_BOARD_LINK);
+		return PageGeneratorManagerAdmin.getDashBoardAdminPageObject(driver);
+    }
 }

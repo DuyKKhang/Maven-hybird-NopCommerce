@@ -8,11 +8,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
-import pageObject.NopCommer.HomePageObject;
-import pageObject.NopCommer.RegisterPageObject;
-import utilities.DataHelper;
+import pageObject.NopCommerUser.HomePageObject;
+import pageObject.NopCommerUser.RegisterPageObject;
 
 
 public class Register extends BaseTest{
@@ -27,7 +26,7 @@ public class Register extends BaseTest{
 	public void beforeClass(String evnName,String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
 		
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 		
 		firstName 	= UserData.Register.FIRSTNAME;
 		lastName 	= UserData.Register.LASTNAME;

@@ -1,9 +1,8 @@
 package com.nopcommer.testcase;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,13 +11,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.NopCommer.*;
-import reportConfig.ExtentTestListener;
+import pageObject.NopCommerUser.*;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class AdvencedSearch extends BaseTest{
@@ -33,7 +29,7 @@ public class AdvencedSearch extends BaseTest{
 	public void beforeClass( String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
 
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
 		email = UserData.Register.EMAIL;
 		passWord = UserData.Register.PASSWORD;

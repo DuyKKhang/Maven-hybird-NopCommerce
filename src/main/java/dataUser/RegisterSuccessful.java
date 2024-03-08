@@ -12,9 +12,9 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
-import pageObject.NopCommer.HomePageObject;
-import pageObject.NopCommer.RegisterPageObject;
+import commons.PageGeneratorManagerUser;
+import pageObject.NopCommerUser.HomePageObject;
+import pageObject.NopCommerUser.RegisterPageObject;
 import reportConfig.ExtentTestManager;
 
 public class RegisterSuccessful extends BaseTest{
@@ -26,7 +26,7 @@ public class RegisterSuccessful extends BaseTest{
 	@BeforeClass
 	public void beforeClass(String evnName,String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
 		firstName 	 = UserData.Register.FIRSTNAME;
 		lastName 	 = UserData.Register.LASTNAME;

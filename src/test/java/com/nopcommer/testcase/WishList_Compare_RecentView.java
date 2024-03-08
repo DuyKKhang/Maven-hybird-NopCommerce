@@ -2,7 +2,7 @@ package com.nopcommer.testcase;
 
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -10,7 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.NopCommer.*;
+import pageObject.NopCommerUser.*;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -38,7 +38,7 @@ public class WishList_Compare_RecentView extends BaseTest{
 	public void beforeClass( String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
 		driver.manage().window().maximize();
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
 		email = UserData.Register.EMAIL;
 		passWord = UserData.Register.PASSWORD;

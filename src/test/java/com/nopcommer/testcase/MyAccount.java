@@ -7,10 +7,10 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
 import dataUser.UserDataMapper;
-import pageObject.NopCommer.*;
+import pageObject.NopCommerUser.*;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -35,7 +35,7 @@ public class MyAccount extends BaseTest{
 	public void beforeClass( String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
 
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
 		email = UserData.Register.EMAIL;
 		passWord = UserData.Register.PASSWORD;

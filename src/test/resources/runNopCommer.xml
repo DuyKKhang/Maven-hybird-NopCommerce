@@ -8,12 +8,13 @@
 	<test name="Test run Chrome">
 		<classes>
 			<parameter name="evnName" value="local" />
-			<parameter name="serverName" value="dev" />
+<!--			<parameter name="serverName" value="dev" />-->
+			<parameter name="serverName" value="admin" />
 			<parameter name="browser" value="firefox" />
 
-			<class name="dataUser.RegisterSuccessful" />
+<!--			<class name="dataUser.RegisterSuccessful" />-->
 
-			<class name="com.nopcommer.testcase.Order" />
+			<class name="com.nopcommer.testcase.Admin" />
 		</classes>
 	</test>
 

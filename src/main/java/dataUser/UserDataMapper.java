@@ -20,6 +20,23 @@ public class UserDataMapper {
 		}
 	}
 
+	@JsonProperty("Admin")
+	private Admin admin;
+	static class Admin{
+		@JsonProperty("emailAdmin")
+		private String emailAdmin;
+		@JsonProperty("passwordAdmin")
+		private String passwordAdmin;
+	}
+
+	public String getEmailAdmin() {
+		return admin.emailAdmin;
+	}
+	public String getPassWordAdmin() {
+		return admin.passwordAdmin;
+	}
+
+
 	@JsonProperty("Customer")
 	private Customer curtomer;
 
@@ -81,6 +98,16 @@ public class UserDataMapper {
 		private String expDate_day;
 		@JsonProperty("expDate_year")
 		private String expDate_year;
+		@JsonProperty("dateOfBirth_day")
+		private String dateOfBirth_day;
+		@JsonProperty("dateOfBirth_month")
+		private String dateOfBirth_month;
+		@JsonProperty("dateOfBirth_year")
+		private String dateOfBirth_year;
+		@JsonProperty("adminComment")
+		private String adminComment;
+		@JsonProperty("password")
+		private String password;
 	}
 
 	public String getAddressFirstName(){
@@ -131,5 +158,19 @@ public class UserDataMapper {
 	public String getAddressFaxNumber(){
 		return address.faxNumber;
 	}
-
+	public String getDateOfBirth_day(){
+		return address.dateOfBirth_day;
+	}
+	public String getDateOfBirth_month(){
+		return address.dateOfBirth_month;
+	}
+	public String getDateOfBirth_year(){
+		return address.dateOfBirth_year;
+	}
+	public String getAdminComment(){
+		return address.adminComment;
+	}
+	public String getPassWord(){
+		return address.password;
+	}
 }

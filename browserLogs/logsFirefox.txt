@@ -1,14 +1,13 @@
-1709539237705	geckodriver	INFO	Listening on 127.0.0.1:17514
-1709539237722	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\khduy\\AppData\\Local\\Temp\\rust_mozprofileUDAwr1"
+1709909476870	geckodriver	INFO	Listening on 127.0.0.1:34022
+1709909477113	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\khduy\\AppData\\Local\\Temp\\rust_mozprofilevpavs1"
 console.warn: services.settings: Ignoring preference override of remote settings server
 console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
-1709539238049	Marionette	INFO	Marionette enabled
+1709909477480	Marionette	INFO	Marionette enabled
 Dynamically enable window occlusion 0
-1709539238133	Marionette	INFO	Listening on port 51722
-Read port: 51722
-1709539238336	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
-console.warn: LoginRecipes: "Falling back to a synchronous message for: https://demo.nopcommerce.com."
-console.warn: LoginRecipes: "Falling back to a synchronous message for: https://demo.nopcommerce.com."
-1709539268154	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
-1709539417256	Marionette	INFO	Stopped listening on port 51722
+1709909477566	Marionette	INFO	Listening on port 51081
+Read port: 51081
+1709909477781	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://admin-demo.nopcommerce.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://admin-demo.nopcommerce.com."
+1709909490346	Marionette	INFO	Stopped listening on port 51081
 Dynamically enable window occlusion 1

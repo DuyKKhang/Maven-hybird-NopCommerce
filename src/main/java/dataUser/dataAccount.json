@@ -6,6 +6,10 @@
 		"email":"automationfc.vn@gmail.com",
 		"companyName":"Automation FC"
 	},
+	"Admin":{
+		"emailAdmin":"admin@yourstore.com",
+		"passwordAdmin":"admin"
+	},
 	"Address":{
 		"firstName":"Automation",
 		"lastName":"FC",
@@ -20,10 +24,16 @@
 		"phone":"0123456789",
 		"faxNumber":"09876542315",
 
+		"dateOfBirth_day":"1",
+		"dateOfBirth_month":"1",
+		"dateOfBirth_year":"2000",
+		"adminComment":"New add Customer (Guest)",
+		"password":"admin_user",
+
+
 		"cardNumber":"4263982640269299",
 		"cardCode":"837",
 		"expDate_day":"2",
 		"expDate_year":"2026"
-
 	}
 }

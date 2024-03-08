@@ -40,6 +40,9 @@ public class BaseTest{
 		case TEST:
 			server ="https://demo.nopcommerce.com/";
 			break;
+		case ADMIN:
+			server ="https://admin-demo.nopcommerce.com/login?ReturnUrl=/admin/";
+			break;
 		case STAGING:
 			server ="https://demo.nopcommerce.com/";
 			break;

@@ -8,10 +8,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import commons.PageGeneratorManager;
+import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
-import pageObject.NopCommer.HomePageObject;
-import pageObject.NopCommer.LoginPageObject;
+import pageObject.NopCommerUser.HomePageObject;
+import pageObject.NopCommerUser.LoginPageObject;
 
 public class Login extends BaseTest {
 	private WebDriver driver;
@@ -24,7 +24,7 @@ public class Login extends BaseTest {
 	public void beforeClass(String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
 
-		homePage = PageGeneratorManager.getHomePageObject(driver);
+		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
 		email = UserData.Register.EMAIL;
 		passWord = UserData.Register.PASSWORD;
