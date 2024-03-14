@@ -1,6 +1,7 @@
 package dataUser;
 
 import java.lang.reflect.Method;
+import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -49,7 +50,10 @@ public class RegisterSuccessful extends BaseTest{
 		Assert.assertEquals(registerPage.getTextMessageSuccess(), "Your registration completed");
 		Assert.assertTrue(registerPage.isDisplyedContinueButton());
 	}
-	
+	public static int random(){
+		Random random = new Random();
+		return random.nextInt(99999);
+	}
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		closeBrowserDriver();

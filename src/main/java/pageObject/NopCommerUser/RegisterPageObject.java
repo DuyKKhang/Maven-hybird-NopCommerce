@@ -15,6 +15,7 @@ public class RegisterPageObject extends BasePage{
 
 	public void clickButtonRegister() {
 		waitForElementClickable(RegisterPageUIs.REGISTER_BUTTON);
+		sleep(1);
 		clickToElement(RegisterPageUIs.REGISTER_BUTTON);
 	}
 
@@ -29,6 +30,7 @@ public class RegisterPageObject extends BasePage{
 	}
 
 	public String getTextMessageSuccess() {
+		sleep(1);
 		waitForElementVisible(RegisterPageUIs.MESSAGE_REGISTER_SUCCESS);
 		return getTextElement(RegisterPageUIs.MESSAGE_REGISTER_SUCCESS);
 	}

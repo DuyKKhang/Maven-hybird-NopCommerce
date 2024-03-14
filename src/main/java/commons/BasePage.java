@@ -22,6 +22,7 @@ import pageObject.NopcommerAdmin.DashBoardAdminPageObject;
 import pageObject.NopcommerAdmin.ProductsCatologAdminPageObject;
 import pageUIs.NopCommerUser.BasePageUIs;
 import pageUIs.NopCommerUser.ComputerPageUIs;
+import pageUIs.NopCommerUser.HomePageUIs;
 
 public class BasePage {
 	private long longTimeout = GlobalConstants.getGlobalConstants().getLongTimeOut();
@@ -207,7 +208,13 @@ public class BasePage {
 		WebElement element = getWebElement(locator);
 		element.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
 	}
-	
+	protected void enterPressKey() {
+		Actions actions = new Actions(driver);
+		sleep(1);
+		actions.sendKeys(Keys.ENTER).perform();
+//		sendKeys(Keys.ARROW_DOWN)
+	}
+
 	protected void selectItemInDropDownBy_Values(String locator, String values) {
 		highlightElement(locator);
 		Select select = new Select(getWebElement(locator));
@@ -391,9 +398,15 @@ public class BasePage {
 	
 	protected void hoverMouseToElement(String locator) {
 		Actions action = new Actions(driver);
-		action.moveToElement(getWebElement(locator)).perform();
+		sleep(1);
+		action.moveToElement(getWebElement(locator)).clickAndHold().perform();
 	}
-	
+	protected void hoverMouseToElement(String locator, String... dynamic) {
+		Actions action = new Actions(driver);
+		sleep(1);
+		action.moveToElement(getWebElement(dynamicLocator(locator,dynamic))).clickAndHold().perform();
+	}
+
 	protected void sendKeyboardToElement(String lovator, Keys key) {
 		Actions action = new Actions(driver);
 		action.sendKeys(getWebElement(lovator),key).perform();
@@ -423,7 +436,12 @@ public class BasePage {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].setAttribute('value', '" + value + "')", getWebElement(dynamicLocator(locatorType, dynamicValues)));
 	}
-	
+	protected void setPropertiesToElementByJS( String locatorType, String properties,String value ) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].setAttribute('" + properties + "', '" + value + "')", getWebElement(locatorType));
+
+	}
+
 	protected void clickToElementByJS( String locatorType) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].click();", getWebElement(locatorType));
@@ -632,7 +650,7 @@ public class BasePage {
 
     public void clickCatalog(String dynamic) {
 		waitForElementVisible(BasePageUIs.MENU_CATALOG_ADMIN,dynamic);
-		clickToElementByJS(BasePageUIs.MENU_CATALOG_ADMIN,dynamic);
+		clickToElement(BasePageUIs.MENU_CATALOG_ADMIN,dynamic);
     }
 	public ProductsCatologAdminPageObject clickProductMenuAdmin(String dynamic) {
 		waitForElementAllVisible(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
@@ -641,7 +659,7 @@ public class BasePage {
 	}
 	public CustomersAdminPageObject clickCustomerstMenuAdmin(String dynamic) {
 		waitForElementAllVisible(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
-		clickToElement(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
+		clickToElementByJS(BasePageUIs.PRODUCTS_MENU_CATALOG_ADMIN_LINK, dynamic);
 		return PageGeneratorManagerAdmin.getCustomersAdminPageObject(driver);
 	}
 
@@ -650,4 +668,10 @@ public class BasePage {
 		clickToElement(BasePageUIs.DASH_BOARD_LINK);
 		return PageGeneratorManagerAdmin.getDashBoardAdminPageObject(driver);
     }
+
+	public LoginPageObject clickToLinkLogin() {
+		waitForElementClickable(HomePageUIs.LOGIN_LINK);
+		clickToElement(HomePageUIs.LOGIN_LINK);
+		return new PageGeneratorManagerUser().getLoginPageObject(driver);
+	}
 }

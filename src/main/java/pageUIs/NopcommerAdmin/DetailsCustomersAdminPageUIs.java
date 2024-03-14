@@ -15,5 +15,6 @@ public class DetailsCustomersAdminPageUIs  {
     public final static String BACK_TO_CUSTOMER_LINK ="xpath=//h1[@class='float-left']//a";
     public final static String INFO_ADDRESS_TABLE_TEXT ="xpath=(//div[@id='customer-address']//td)[%s]";
     public final static String EDIT_ADDRESSES ="xpath=//a[text()='%s']";
+    public final static String DELETE_ADDRESSES ="xpath=//a[@class='btn btn-default' and text()='Delete']";
     public final static String MESSAGE_TABLE_NO_DATA ="xpath=//div[@id='customer-address']//td[@class='dataTables_empty']";
 }

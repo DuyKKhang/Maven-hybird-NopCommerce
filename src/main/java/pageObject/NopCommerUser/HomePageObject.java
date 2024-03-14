@@ -23,11 +23,7 @@ public class HomePageObject extends BasePage{
 		return new PageGeneratorManagerUser().getRegisterPageObject(driver);
 	}
 
-	public LoginPageObject clickToLinkLogin() {
-		waitForElementClickable(HomePageUIs.LOGIN_LINK);
-		clickToElement(HomePageUIs.LOGIN_LINK);
-		return new PageGeneratorManagerUser().getLoginPageObject(driver);
-	}
+
 
 	public String getTitlePage() {
 		waitForElementVisible(LoginPageUIs.LINK_LOGOUT);

@@ -1,5 +1,7 @@
 package com.nopcommer.testcase;
 
+import com.aventstack.extentreports.Status;
+import dataUser.RegisterSuccessful;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -12,12 +14,17 @@ import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
 import pageObject.NopCommerUser.HomePageObject;
 import pageObject.NopCommerUser.LoginPageObject;
+import pageObject.NopCommerUser.RegisterPageObject;
+import reportConfig.ExtentTestManager;
+
+import java.util.Random;
 
 public class Login extends BaseTest {
 	private WebDriver driver;
 	private LoginPageObject loginPage;
 	private HomePageObject homePage;
-	private String email, passWord;
+	private RegisterPageObject registerPage;
+	private String firstName, lastName, email, passWord, confirmPasss;
 
 	@Parameters({ "evnName", "serverName", "browser" })
 	@BeforeClass
@@ -25,16 +32,27 @@ public class Login extends BaseTest {
 		driver = getBrowserDriver(evnName, serverName, browser);
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
+		firstName 	 = UserData.Register.FIRSTNAME;
+		lastName 	 = UserData.Register.LASTNAME;
+		email 		 = random() + UserData.Register.EMAIL;
+		passWord 	 = UserData.Register.PASSWORD;
+		confirmPasss = UserData.Register.PASSWORD;
 
-		email = UserData.Register.EMAIL;
-		passWord = UserData.Register.PASSWORD;
-		System.out.println(email);
-		System.out.println(passWord);
+		registerPage = homePage.clickToRegister();
+		registerPage.inputTextbox(firstName,"FirstName");
+		registerPage.inputTextbox(lastName,"LastName");
+		registerPage.inputTextbox(email,"Email");
+		registerPage.inputTextbox(passWord,"Password");
+		registerPage.inputTextbox(confirmPasss,"ConfirmPassword");
+		registerPage.clickButtonRegister();
+		Assert.assertEquals(registerPage.getTextMessageSuccess(), "Your registration completed");
+		Assert.assertTrue(registerPage.isDisplyedContinueButton());
+
 	}
 
 	@Test
 	public void TC_01_Login_With_Empty_Data() {
-		loginPage = homePage.clickToLinkLogin();
+		loginPage = registerPage.clickToLinkLogin();
 		loginPage.clickToButtonLogin();
 
 		Assert.assertEquals(loginPage.getTitlePageLogin(), "nopCommerce demo store. Login");
@@ -69,7 +87,6 @@ public class Login extends BaseTest {
 		loginPage.sendkeyTextBox("Password", "");
 		loginPage.clickToButtonLogin();
 		Assert.assertEquals(loginPage.getMessageErrorEmailUnsuccessful(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
-		
 	}
 
 	@Test
@@ -95,5 +112,9 @@ public class Login extends BaseTest {
 	@AfterClass
 	public void afterClass() {
 		closeBrowserDriver();
+	}
+	public int random(){
+		Random random = new Random();
+		return random.nextInt(99999);
 	}
 }

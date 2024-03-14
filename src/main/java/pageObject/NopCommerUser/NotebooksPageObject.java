@@ -102,4 +102,8 @@ public class NotebooksPageObject extends BasePage {
     public boolean unDisplaySwitchPage(String dynamic) {
         return isUnDisplayed(NotebooksPageUIs.ICON_SWICTH_PAGE, dynamic);
     }
+
+    public void refreshNoteBookCurrentPage() {
+        refreshCurrentPage();
+    }
 }

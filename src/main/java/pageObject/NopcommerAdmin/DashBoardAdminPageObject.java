@@ -23,4 +23,7 @@ public class DashBoardAdminPageObject extends BasePage {
     }
 
 
+    public void refreshPage() {
+        refreshCurrentPage();
+    }
 }

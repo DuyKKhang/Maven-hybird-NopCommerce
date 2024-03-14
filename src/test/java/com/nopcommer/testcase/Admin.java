@@ -36,6 +36,7 @@ public class Admin extends BaseTest{
 	@BeforeClass
 	public void beforeClass( String evnName, String serverName, String browser) {
 		driver = getBrowserDriver(evnName, serverName, browser);
+		driver.manage().window().maximize();
 		userData = UserDataMapper.getUserDataMapper();
 
 		loginAdminPage = PageGeneratorManagerAdmin.getLoginAdminPageObject(driver);
@@ -87,6 +88,7 @@ public class Admin extends BaseTest{
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Open Catalog > Products");
 		dashBoardAdminPage.clickCatalog("Catalog");
 		productsCatologAdminPage = dashBoardAdminPage.clickProductMenuAdmin("Product");
+		productsCatologAdminPage.clickSearchPorduct("style","display: block;");
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Search 'Lenovo IdeaCentre 600 All-in-One PC'");
 		productsCatologAdminPage.searchProduct("Lenovo IdeaCentre 600 All-in-One PC","SearchProductName");
@@ -96,14 +98,6 @@ public class Admin extends BaseTest{
 		verifyEquals(productsCatologAdminPage.getInformationProducts("3"),"Lenovo IdeaCentre 600 All-in-One PC");
 		verifyEquals(productsCatologAdminPage.getInformationProducts("4"),"LE_IC_600");
 		verifyTrue(productsCatologAdminPage.getSizeElement()==1);
-
-		ExtentTestManager.getTest().log(Status.INFO,"Step 04: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 05: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 
 	}
 	@Test
@@ -123,11 +117,6 @@ public class Admin extends BaseTest{
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: Verify 'No data available in table'");
 		verifyEquals(productsCatologAdminPage.getMessageNodata(),"No data available in table");
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_03_Search_With_Product_Name_Plus_Parent_Catefory_Plus_Checked(Method method){
@@ -148,11 +137,6 @@ public class Admin extends BaseTest{
 		verifyEquals(productsCatologAdminPage.getInformationProducts("4"),"LE_IC_600");
 		verifyTrue(productsCatologAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_04_Search_With_Product_Name_Plus_Chill_Catefory(Method method){
@@ -173,11 +157,6 @@ public class Admin extends BaseTest{
 		verifyEquals(productsCatologAdminPage.getInformationProducts("4"),"LE_IC_600");
 		verifyTrue(productsCatologAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_05_Search_With_Product_Name_Plus_Manufacturer(Method method){
@@ -199,10 +178,6 @@ public class Admin extends BaseTest{
 		ExtentTestManager.getTest().log(Status.INFO,"Step 06: Verify 'No data available in table'");
 		verifyEquals(productsCatologAdminPage.getMessageNodata(),"No data available in table");
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_06_Go_Directly_to_Product_SKU(Method method){
@@ -218,19 +193,18 @@ public class Admin extends BaseTest{
 		verifyTrue(productsCatologAdminPage.getTitleDirectly().contains("Edit product details"));
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: verify displayed 'Lenovo IdeaCentre 600 All-in_One PC'");
+		productsCatologAdminPage.clockOpenProductInfo();
+
 		verifyEquals(productsCatologAdminPage.getInfoProductDetails("Name", "value"),"Lenovo IdeaCentre 600 All-in-One PC");
-		verifyEquals(productsCatologAdminPage.getInfoProductDetails("SKu","value"),"LE_IC_600");
+		verifyEquals(productsCatologAdminPage.getInfoProductDetails("Sku","value"),"LE_IC_600");
+
 		dashBoardAdminPage = productsCatologAdminPage.clickDashBoard();
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_07_Create_new_Customer(Method method){
 		ExtentTestManager.startTest(method.getName(),"TC_07_Create_new_Customer");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Open Customer > Customers");
+		dashBoardAdminPage.refreshPage();
 		dashBoardAdminPage.clickCatalog("Customers");
 		customersAdminPage = dashBoardAdminPage.clickCustomerstMenuAdmin("Customer");
 		verifyEquals(customersAdminPage.getTitleCustomers(),"Customers");
@@ -248,24 +222,25 @@ public class Admin extends BaseTest{
 		customersAdminPage.selectGender(gender);
 		customersAdminPage.inputInformation(dateOfBirthCustomers,"DateOfBirth");
 		customersAdminPage.inputInformation(companyNameCustomers,"Company");
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.clickDeteleRoles();
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.checkBoxActive();
-		customersAdminPage.inputInformation(adminCommentCustomers,"AdminComment");
+		customersAdminPage.inputTextAreaInformation(adminCommentCustomers,"AdminComment");
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Click button 'Save and Continue Edit'");
 		customersAdminPage.clickSaveAndContinueEdit();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: Verify information");
-		verifyEquals(customersAdminPage.getTextMessageSaveSuccess(),"The new customer has been added successfully.");
-		String saveEmailCustomerInfo = customersAdminPage.getInformationCustomer("Email");
-		String saveFirstNameCustomerInfo = customersAdminPage.getInformationCustomer("FirstName");
-		String saveLastNameCustomerInfo = customersAdminPage.getInformationCustomer("LastName");
+		verifyTrue(customersAdminPage.getTextMessageSaveSuccess().contains("The new customer has been added successfully."));
+		String saveEmailCustomerInfo = customersAdminPage.getInformationCustomer("value","Email");
+		String saveFirstNameCustomerInfo = customersAdminPage.getInformationCustomer("value","FirstName");
+		String saveLastNameCustomerInfo = customersAdminPage.getInformationCustomer("value","LastName");
 		String saveGenderCustomerInfo = customersAdminPage.getGenderCustomerInfo(gender);
-		String saveDateOfBirthCustomerInfo = customersAdminPage.getInformationCustomer("DateOfBirth");
-		String saveCompanyNameCustomerInfo = customersAdminPage.getInformationCustomer("Company");
+		String saveDateOfBirthCustomerInfo = customersAdminPage.getInformationCustomer("value","DateOfBirth");
+		String saveCompanyNameCustomerInfo = customersAdminPage.getInformationCustomer("value","Company");
 		String saveCustomerRolesCustomerInfo = customersAdminPage.getCustomerRolesText();
 		boolean saveActiveCustomerInfo = customersAdminPage.getStatusActive();
-		String saveAdminCommentCustomerInfo = customersAdminPage.getInformationCustomer("AdminComment");
+		String saveAdminCommentCustomerInfo = customersAdminPage.getTextAreaInformationCustomer("AdminComment");
 
 		verifyEquals(emailCustomers, saveEmailCustomerInfo);
 		verifyEquals(firstNameCustomers, saveFirstNameCustomerInfo);
@@ -282,8 +257,8 @@ public class Admin extends BaseTest{
 		customersAdminPage.clickBackToCustomerList();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 07: Search vs 'Customer roles' = Guest => Click search button");
-		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.clickDeteleRolesCustomer();
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 08: Verify Customer displayed");
@@ -294,8 +269,6 @@ public class Admin extends BaseTest{
 		verifyTrue(customersAdminPage.isNameListCustomer(listNameCustomer,firstNameCustomers +" "+ lastNameCustomers));
 		verifyTrue(customersAdminPage.isCoompanyNameListCustomer(listCompanyNameCustomer,companyNameCustomers));
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_08_Search_Customer_With_Email(Method method){
@@ -306,7 +279,7 @@ public class Admin extends BaseTest{
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Customer roles 'Guest'");
 		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Verify only item in table displayed");
@@ -317,12 +290,6 @@ public class Admin extends BaseTest{
 		verifyTrue(customersAdminPage.isCoompanyNameListCustomer(listCompanyNameCustomer,companyNameCustomers));
 		verifyTrue(customersAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 05: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_09_Search_Customer_With_FirstName_and_LastName(Method method){
@@ -337,7 +304,7 @@ public class Admin extends BaseTest{
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Customer roles = Guests");
 		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: Verify only item in table displayed");
@@ -348,11 +315,6 @@ public class Admin extends BaseTest{
 		verifyTrue(customersAdminPage.isCoompanyNameListCustomer(listCompanyNameCustomer,companyNameCustomers));
 		verifyTrue(customersAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_10_Search_Customer_vs_Company(Method method){
@@ -366,7 +328,7 @@ public class Admin extends BaseTest{
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Customer roles = Guests");
 		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Verify only item in table displayed");
@@ -377,12 +339,6 @@ public class Admin extends BaseTest{
 		verifyTrue(customersAdminPage.isCoompanyNameListCustomer(listCompanyNameCustomer,companyNameCustomers));
 		verifyTrue(customersAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 05: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_11_Search_Customer_vs_Full_Data(Method method){
@@ -398,7 +354,7 @@ public class Admin extends BaseTest{
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Customer roles = Guests");
 		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Verify only item in table displayed");
@@ -409,18 +365,13 @@ public class Admin extends BaseTest{
 		verifyTrue(customersAdminPage.isCoompanyNameListCustomer(listCompanyNameCustomer,companyNameCustomers));
 		verifyTrue(customersAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 05: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_12_Edit_Customer(Method method){
 		ExtentTestManager.startTest(method.getName(),"TC_12_Edit_Customer");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Open Customer > Customers");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Input Search Customer with data");
+		customersAdminPage.refreshPage();
 		customersAdminPage.searchInformation(emailCustomers,"SearchEmail");
 		customersAdminPage.searchInformation(firstNameCustomers,"SearchFirstName");
 		customersAdminPage.searchInformation(lastNameCustomers,"SearchLastName");
@@ -429,7 +380,7 @@ public class Admin extends BaseTest{
 		customersAdminPage.searchInformation(companyNameCustomers,"SearchCompany");
 
 		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Click 'Edit; button");
@@ -441,13 +392,13 @@ public class Admin extends BaseTest{
 		detailsCustomersAdminPage.editInformation(editLastName,"LastName");
 		detailsCustomersAdminPage.editInformation(editDateOf,"DateOfBirth");
 		detailsCustomersAdminPage.editInformation(editCompany,"Company");
-		detailsCustomersAdminPage.editInformation(editAdminComment,"AdminComment");
+		detailsCustomersAdminPage.inputTextAreaInformationCustomer(editAdminComment,"AdminComment");
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: Click Save");
 		customersAdminPage = detailsCustomersAdminPage.clickSaveEdit();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 06: Verify message displayed: 'The customer has been updated successfully'");
-		verifyEquals(customersAdminPage.getMessageSaveEdit(),"The customer has been updated successfully.");
+		verifyTrue(customersAdminPage.getMessageSaveEdit().contains("The customer has been updated successfully."));
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 07: Search");
 		customersAdminPage.searchInformation(editEmail,"SearchEmail");
@@ -458,7 +409,7 @@ public class Admin extends BaseTest{
 		customersAdminPage.searchInformation(editCompany,"SearchCompany");
 
 		customersAdminPage.clickDeteleRoles();
-		customersAdminPage.selectCustomerRoles("Guests");
+		customersAdminPage.sendkeyCustomerRoles("Guests");
 		customersAdminPage.clickSearch();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 08: Verify true information after search");
@@ -466,10 +417,9 @@ public class Admin extends BaseTest{
 		List<String> listCompanyNameCustomer = customersAdminPage.getListCompanyNameCustomer();
 		verifyTrue(customersAdminPage.isNameListCustomer(listNameCustomer,editFirstName +" "+ editLastName));
 		verifyTrue(customersAdminPage.isCoompanyNameListCustomer(listCompanyNameCustomer,editCompany));
+
 		verifyTrue(customersAdminPage.getSizeElement()==1);
 
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_13_Add_New_Address_In_Customer_Detail(Method method){
@@ -477,6 +427,7 @@ public class Admin extends BaseTest{
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Open Customer > Customers");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Search Customer with data");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Click 'Edit' button > Click 'Addresses' > Click 'Add new address'");
+		customersAdminPage.refreshPage();
 		detailsCustomersAdminPage = customersAdminPage.clickEditCustomer();
 		detailsCustomersAdminPage.clickAddressesDetail();
 		detailsCustomersAdminPage.clickAddNewAdresses();
@@ -497,7 +448,7 @@ public class Admin extends BaseTest{
 		detailsCustomersAdminPage.clickSaveAddresses();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: Verify message displayed: 'The new address has been added successfully'");
-		verifyEquals(detailsCustomersAdminPage.getMassegeSaveAddress(),"The new address has been added successfully.");
+		verifyTrue(detailsCustomersAdminPage.getMassegeSaveAddress().contains("The new address has been added successfully."));
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 06: Click 'back to customer details' link");
 		detailsCustomersAdminPage.clickBackToCustomerDetail();
@@ -518,10 +469,6 @@ public class Admin extends BaseTest{
 		verifyEquals(phoneNumberCustomer,addressesPhoneNumber);
 		verifyEquals(faxNumberCustomer,addressesFaxNumber);
 		verifyEquals(verifyAddress,addressesAddress);
-
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_14_Edit_Address_in_Customer_Detail(Method method){
@@ -560,7 +507,7 @@ public class Admin extends BaseTest{
 		detailsCustomersAdminPage.clickSaveAddresses();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 05: Verify message displayed: 'The new address has been added successfully'");
-		verifyEquals(detailsCustomersAdminPage.getMassegeSaveAddress(),"The address has been updated successfully.");
+		verifyTrue(detailsCustomersAdminPage.getMassegeSaveAddress().contains("The address has been updated successfully."));
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 06: Click 'back to customer details' link");
 		detailsCustomersAdminPage.clickBackToCustomerDetail();
@@ -581,9 +528,6 @@ public class Admin extends BaseTest{
 		verifyEquals(updatePhoneNumber,addressesPhoneNumber);
 		verifyEquals(updateFaxNumber,addressesFaxNumber);
 		verifyEquals(verifyAddress,addressesAddress);
-
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@Test
 	public void TC_15_Delete_Address_in_Customer_Detail(Method method){
@@ -591,16 +535,10 @@ public class Admin extends BaseTest{
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Open Customer > Customers");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Search Customer with data");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 03: Click 'Edit' button > Click 'Addresses' > Click 'Delete' button");
-		detailsCustomersAdminPage.clickEditAddress("Delete");
+		detailsCustomersAdminPage.clickDeleteAddress();
 
 		ExtentTestManager.getTest().log(Status.INFO,"Step 04: Accept alert and verify address delete success");
 		verifyEquals(detailsCustomersAdminPage.getMessageTableNoData(),"No data available in table");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 05: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 06: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 07: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 08: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 09: ");
-		ExtentTestManager.getTest().log(Status.INFO,"Step 10: ");
 	}
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {

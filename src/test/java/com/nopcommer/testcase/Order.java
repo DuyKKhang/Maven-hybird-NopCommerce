@@ -32,6 +32,8 @@ public class Order extends BaseTest{
 	private OrdersProductPageObject ordersProductPage;
 	private String email, passWord;
 	private UserDataMapper userData;
+	private RegisterPageObject registerPage;
+	private String  confirmPasss;
 	private String firstName, lastName, emailAccount, city, address1, postalCode, phoneNumber, country, cardNumber, cardCode, expDay, expYear;
 
 	@Parameters({ "evnName", "serverName", "browser" })
@@ -41,9 +43,23 @@ public class Order extends BaseTest{
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
-		email = UserData.Register.EMAIL;
-		passWord = UserData.Register.PASSWORD;
-		loginPage = homePage.clickToLinkLogin();
+		firstName 	 = UserData.Register.FIRSTNAME;
+		lastName 	 = UserData.Register.LASTNAME;
+		email 		 = random() + UserData.Register.EMAIL;
+		passWord 	 = UserData.Register.PASSWORD;
+		confirmPasss = UserData.Register.PASSWORD;
+
+		registerPage = homePage.clickToRegister();
+		registerPage.inputTextbox(firstName,"FirstName");
+		registerPage.inputTextbox(lastName,"LastName");
+		registerPage.inputTextbox(email,"Email");
+		registerPage.inputTextbox(passWord,"Password");
+		registerPage.inputTextbox(confirmPasss,"ConfirmPassword");
+		registerPage.clickButtonRegister();
+		Assert.assertEquals(registerPage.getTextMessageSuccess(), "Your registration completed");
+		Assert.assertTrue(registerPage.isDisplyedContinueButton());
+
+		loginPage = registerPage.clickToLinkLogin();
 
 		userData = UserDataMapper.getUserDataMapper();
 		firstName = userData.getAddressFirstName();
@@ -116,10 +132,6 @@ public class Order extends BaseTest{
 		verifyEquals(priceProduct, unitPrice);
 		verifyEquals(priceProduct, subTotal);
 
-		System.out.println("priceProduct: "+priceProduct);
-		System.out.println("unitPrice: "+unitPrice);
-		System.out.println("subTotal: "+subTotal);
-
 	}
 	@Test
 	public void TC_02_Edit_Product_In_Shopping_Cart(Method method) {
@@ -145,7 +157,6 @@ public class Order extends BaseTest{
 		List<String> softWare = new ArrayList<>();
 		softWare = detailProductPage.getSoftWare("1");
 		String softWareText = String.join("", softWare);
-//		String quantity = detailProductPage.getQuantity("value");
 		String priceProduct = detailProductPage.getPriceProduct();
 		String totalPriceProduct = detailProductPage.getTotalPriceProduct(priceProduct,quantity);
 
@@ -169,7 +180,6 @@ public class Order extends BaseTest{
 		verifyTrue(information.contains(informationProduct));
 		verifyEquals(Integer.toString(quantity),quantityShoppingCart);
 		verifyEquals(priceProduct, unitPrice);
-
 
 		ExtentTestManager.getTest().log(Status.INFO, "Step 01: Verify total pay shopping cart");
 		verifyEquals(totalPriceProduct, subTotal);
@@ -224,7 +234,6 @@ public class Order extends BaseTest{
 	public void TC_05_Checkout_Payment_Method_By_Cheque(Method method) {
 		ExtentTestManager.startTest(method.getName(), "Checkout_Payment_Method_By_Cheque");
 		ExtentTestManager.getTest().log(Status.INFO, "Step 01: Added product into shopping cart");
-//		driver.get("https://demo.nopcommerce.com/");
 		computerPage = homePage.clickComputerLinkProduct("Computers");
 
 		desktopsProductPage = computerPage.clickLinkProductDesktops("Notebooks ");
@@ -706,13 +715,6 @@ public class Order extends BaseTest{
 		verifyEquals(country,countryShippingAddress);
 		verifyEquals("Shipping Method: "+shippingMethodTextAfter,shippingShippingAddress);
 
-//		verifyEquals(skuProduct,skuConfirn);
-//		verifyEquals(nameProduct,nameProductConfirn);
-//		verifyEquals(priceProduct,priceConfirn);
-//		verifyEquals(quantityProduct,qtyConfirn);
-//		verifyEquals(totalPriceProduct,totalConfirn);
-//		verifyEquals("Gift wrapping: "+giftWrappingProduct,giftWrappingConfirn);
-//		verifyEquals(totalPriceProduct,subTotalConfirn);
 		checkOutPage.clickContinueConfirm();
 
 		ExtentTestManager.getTest().log(Status.INFO, "Step 08: Verify success message and order number");

@@ -13,6 +13,8 @@ import dataUser.UserData;
 import pageObject.NopCommerUser.HomePageObject;
 import pageObject.NopCommerUser.RegisterPageObject;
 
+import java.util.Random;
+
 
 public class Register extends BaseTest{
 	
@@ -27,12 +29,13 @@ public class Register extends BaseTest{
 		driver = getBrowserDriver(evnName, serverName, browser);
 		
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
-		
+
 		firstName 	= UserData.Register.FIRSTNAME;
 		lastName 	= UserData.Register.LASTNAME;
-		email 		= UserData.Register.EMAIL;
+		email 		= random()+ UserData.Register.EMAIL;
 		passWord 	= UserData.Register.PASSWORD;
 		confirmPasss = UserData.Register.PASSWORD;
+
 	}
 	
 	@Test
@@ -105,7 +108,10 @@ public class Register extends BaseTest{
 		
 		Assert.assertEquals(registerPage.getTextMessageError("ConfirmPassword-error"), "The password and confirmation password do not match.");
 	}
-	
+	public int random(){
+		Random random = new Random();
+		return random.nextInt(99999);
+	}
 	@AfterClass(alwaysRun = true)
 	public void afterClass() {
 		closeBrowserDriver();

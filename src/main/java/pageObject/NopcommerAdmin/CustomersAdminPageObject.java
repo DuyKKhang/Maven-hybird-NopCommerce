@@ -2,6 +2,7 @@ package pageObject.NopcommerAdmin;
 
 import commons.BasePage;
 import commons.PageGeneratorManagerAdmin;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import pageUIs.NopcommerAdmin.CustomersAdminPageUIs;
 import pageUIs.NopcommerAdmin.ProductsCatologAdminPageUIs;
@@ -31,11 +32,6 @@ public class CustomersAdminPageObject extends BasePage {
         sendkeyToElement(CustomersAdminPageUIs.INFORMATION_CUSTOMER_TEXTBOX, value, dynamic);
     }
 
-    public void selectCustomerRoles(String value) {
-        waitForElementVisible(CustomersAdminPageUIs.CUSTOMER_ROLES_SELECT);
-        selectItemInDropDownBy_Text(CustomersAdminPageUIs.CUSTOMER_ROLES_SELECT, value);
-    }
-
     public void clickSaveAndContinueEdit() {
         waitForElementClickable(CustomersAdminPageUIs.SAVE_CONTINUE_EDIT_BUTTON);
         clickToElement(CustomersAdminPageUIs.SAVE_CONTINUE_EDIT_BUTTON);
@@ -50,7 +46,6 @@ public class CustomersAdminPageObject extends BasePage {
         waitForElementVisible(CustomersAdminPageUIs.BACK_TO_CUSTOMER_LIST_LINK);
         clickToElementByJS(CustomersAdminPageUIs.BACK_TO_CUSTOMER_LIST_LINK);
     }
-
     public void clickSearch() {
         waitForElementVisible(CustomersAdminPageUIs.SEARCH_BUTTON);
         clickToElement(CustomersAdminPageUIs.SEARCH_BUTTON);
@@ -71,9 +66,9 @@ public class CustomersAdminPageObject extends BasePage {
         checkTheCheckboxOrRadio(CustomersAdminPageUIs.ACTIVE_CHECKBOX);
     }
 
-    public String getInformationCustomer(String dynamic) {
+    public String getInformationCustomer(String attrabute, String dynamic) {
         waitForElementVisible(CustomersAdminPageUIs.INFORMATION_CUSTOMER_TEXTBOX, dynamic);
-        return getTextElement(CustomersAdminPageUIs.INFORMATION_CUSTOMER_TEXTBOX, dynamic);
+        return getAttrabuteValue(CustomersAdminPageUIs.INFORMATION_CUSTOMER_TEXTBOX,attrabute, dynamic);
     }
 
     public String getGenderCustomerInfo(String dynamic) {
@@ -119,8 +114,10 @@ public class CustomersAdminPageObject extends BasePage {
         for(String name : listNameCustomer){
             if(name.equals(value)){
                 isName = true;
+                break;
             }
         }
+
         return isName;
     }
 
@@ -163,5 +160,33 @@ public class CustomersAdminPageObject extends BasePage {
     public String getMessageSaveEdit() {
         waitForElementVisible(CustomersAdminPageUIs.MESSAGE_SAVE_EDIT_TEXT);
         return getTextElement(CustomersAdminPageUIs.MESSAGE_SAVE_EDIT_TEXT);
+    }
+
+    public void sendkeyCustomerRoles(String value) {
+        waitForElementVisible(CustomersAdminPageUIs.CUSTOMER_ROLES_INPUT_TEXT_BOX);
+//        hoverMouseToElement(CustomersAdminPageUIs.CUSTOMER_ROLES_INPUT_TEXT_BOX);
+        sendkeyToElement(CustomersAdminPageUIs.CUSTOMER_ROLES_INPUT_TEXT_BOX, value);
+        enterPressKey();
+    }
+
+    public void inputTextAreaInformation(String value, String dynamic) {
+        waitForElementVisible(CustomersAdminPageUIs.TEXTAREA_INFORMATION_CUSTOMER_TEXT_BOX, dynamic);
+        sendkeyToElement(CustomersAdminPageUIs.TEXTAREA_INFORMATION_CUSTOMER_TEXT_BOX, value, dynamic);
+    }
+
+    public String getTextAreaInformationCustomer(String dynamic) {
+        waitForElementVisible(CustomersAdminPageUIs.TEXTAREA_INFORMATION_CUSTOMER_TEXT_BOX, dynamic);
+        return getTextElement(CustomersAdminPageUIs.TEXTAREA_INFORMATION_CUSTOMER_TEXT_BOX, dynamic);
+    }
+
+    public void clickDeteleRolesCustomer() {
+        sleep(1);
+        refreshCurrentPage();
+        waitForElementVisible(CustomersAdminPageUIs.DELETE_ROLES);
+        clickToElementByJS(CustomersAdminPageUIs.DELETE_ROLES);
+    }
+
+    public void refreshPage() {
+        refreshCurrentPage();
     }
 }

@@ -10,10 +10,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import pageObject.NopCommerUser.ComputerPageObject;
-import pageObject.NopCommerUser.HomePageObject;
-import pageObject.NopCommerUser.LoginPageObject;
-import pageObject.NopCommerUser.NotebooksPageObject;
+import pageObject.NopCommerUser.*;
 import reportConfig.ExtentTestManager;
 
 import java.lang.reflect.Method;
@@ -25,7 +22,8 @@ public class Sort_Display_Paging extends BaseTest{
 	private HomePageObject homePage;
 	private ComputerPageObject computerPage;
 	private NotebooksPageObject notebooksPage;
-	private String email, passWord;
+	private RegisterPageObject registerPage;
+	private String firstName, lastName, email, passWord, confirmPasss;
 
 	@Parameters({ "evnName", "serverName", "browser" })
 	@BeforeClass
@@ -34,9 +32,23 @@ public class Sort_Display_Paging extends BaseTest{
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
-		email = UserData.Register.EMAIL;
-		passWord = UserData.Register.PASSWORD;
-		loginPage = homePage.clickToLinkLogin();
+		firstName 	 = UserData.Register.FIRSTNAME;
+		lastName 	 = UserData.Register.LASTNAME;
+		email 		 = random() + UserData.Register.EMAIL;
+		passWord 	 = UserData.Register.PASSWORD;
+		confirmPasss = UserData.Register.PASSWORD;
+
+		registerPage = homePage.clickToRegister();
+		registerPage.inputTextbox(firstName,"FirstName");
+		registerPage.inputTextbox(lastName,"LastName");
+		registerPage.inputTextbox(email,"Email");
+		registerPage.inputTextbox(passWord,"Password");
+		registerPage.inputTextbox(confirmPasss,"ConfirmPassword");
+		registerPage.clickButtonRegister();
+		Assert.assertEquals(registerPage.getTextMessageSuccess(), "Your registration completed");
+		Assert.assertTrue(registerPage.isDisplyedContinueButton());
+
+		loginPage = registerPage.clickToLinkLogin();
 
 		loginPage.sendkeyTextBox("Email", email);
 		loginPage.sendkeyTextBox("Password", passWord);
@@ -51,6 +63,7 @@ public class Sort_Display_Paging extends BaseTest{
 		ExtentTestManager.startTest(method.getName(),"Sort_Name_A_To_Z");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Click sort by name A to Z");
 		notebooksPage.selectSortByName("Name: A to Z");
+		notebooksPage.refreshNoteBookCurrentPage();
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Verify product have been sort");
 		verifyTrue(notebooksPage.isProductSortNameByAscending("A to Z"));
 
@@ -60,6 +73,7 @@ public class Sort_Display_Paging extends BaseTest{
 		ExtentTestManager.startTest(method.getName(),"Sort_Name_Z_To_A");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Click sort by name Z to A");
 		notebooksPage.selectSortByName("Name: Z to A");
+		notebooksPage.refreshNoteBookCurrentPage();
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Verify product have been sort");
 		verifyTrue(notebooksPage.isProductSortNameByAscending("Z to A"));
 	}
@@ -68,6 +82,7 @@ public class Sort_Display_Paging extends BaseTest{
 		ExtentTestManager.startTest(method.getName(),"Sort_Price_Low_To_High");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Click sort by price low to high");
 		notebooksPage.selectSortByName("Price: Low to High");
+		notebooksPage.refreshNoteBookCurrentPage();
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Verify product have been sort");
 		verifyTrue(notebooksPage.isProductSortPriceByAscending("Low to High"));
 	}
@@ -76,6 +91,7 @@ public class Sort_Display_Paging extends BaseTest{
 		ExtentTestManager.startTest(method.getName(),"Sort_Price_High_To_Low");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: Click sort by price high to low");
 		notebooksPage.selectSortByName("Price: High to Low");
+		notebooksPage.refreshNoteBookCurrentPage();
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Verify product have been sort");
 		verifyTrue(notebooksPage.isProductSortPriceByAscending("High to Low"));
 	}

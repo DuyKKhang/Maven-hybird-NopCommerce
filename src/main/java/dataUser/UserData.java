@@ -2,6 +2,8 @@ package dataUser;
 
 import utilities.DataHelper;
 
+import java.util.Random;
+
 public class UserData {
 	
 	private static DataHelper data = new DataHelper().getDataHelper(); 
@@ -24,5 +26,9 @@ public class UserData {
 	public static class LoginAdmin{
 		public static final String EMAIL =  "admin@yourstore.com";
 		public static final String PASSWORD =  "admin";
+	}
+	public static int random(){
+		Random random = new Random();
+		return random.nextInt(99999);
 	}
 }

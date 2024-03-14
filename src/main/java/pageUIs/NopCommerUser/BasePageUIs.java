@@ -13,6 +13,6 @@ public class BasePageUIs {
     public final static String HOME_PAGE_LINK = "xpath=//div[@class='header-logo']//img[contains(@src,'https://demo.nopcommerce.com')]";
     public final static String DYNAMIC_LINK_MENU_PRODUCT = "xpath=//ul[@class='top-menu notmobile']//a[contains(text(),'%s')]";
     public final static String MENU_CATALOG_ADMIN = "xpath=//li[@class='nav-item has-treeview']/a//p[contains(text(),'%s')]";
-    public final static String PRODUCTS_MENU_CATALOG_ADMIN_LINK = "xpath=//a[contains(@href,'/Admin/%s/List') and @class='nav-link']";
-    public final static String DASH_BOARD_LINK = "xpath=//img[@class='brand-image-xl logo-xl']";
+    public final static String PRODUCTS_MENU_CATALOG_ADMIN_LINK = "xpath=//li[@class='nav-item']//a[contains(@href,'/Admin/%s/List')]";
+    public final static String DASH_BOARD_LINK = "xpath=//a[@class='nav-link']//p[contains(text(),'Dashboard')]";
 }

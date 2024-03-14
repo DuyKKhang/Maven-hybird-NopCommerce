@@ -3,6 +3,7 @@ package com.nopcommer.testcase;
 import com.aventstack.extentreports.Status;
 import commons.BaseTest;
 import commons.PageGeneratorManagerUser;
+import dataUser.RegisterSuccessful;
 import dataUser.UserData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,8 +23,8 @@ public class AdvencedSearch extends BaseTest{
 	private LoginPageObject loginPage;
 	private HomePageObject homePage;
 	private AdvencedSearchPageObject advencedSearchPage;
-	private String email, passWord;
-
+	private RegisterPageObject registerPage;
+	private String firstName,email, lastName, passWord, confirmPasss;
 	@Parameters({ "evnName", "serverName", "browser" })
 	@BeforeClass
 	public void beforeClass( String evnName, String serverName, String browser) {
@@ -31,9 +32,24 @@ public class AdvencedSearch extends BaseTest{
 
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
-		email = UserData.Register.EMAIL;
-		passWord = UserData.Register.PASSWORD;
-		loginPage = homePage.clickToLinkLogin();
+		firstName 	 = UserData.Register.FIRSTNAME;
+		lastName 	 = UserData.Register.LASTNAME;
+		email 		 = random() + UserData.Register.EMAIL;
+		passWord 	 = UserData.Register.PASSWORD;
+		confirmPasss = UserData.Register.PASSWORD;
+
+		registerPage = homePage.clickToRegister();
+		registerPage.inputTextbox(firstName,"FirstName");
+		registerPage.inputTextbox(lastName,"LastName");
+		registerPage.inputTextbox(email,"Email");
+		registerPage.inputTextbox(passWord,"Password");
+		registerPage.inputTextbox(confirmPasss,"ConfirmPassword");
+		registerPage.clickButtonRegister();
+
+		Assert.assertEquals(registerPage.getTextMessageSuccess(), "Your registration completed");
+		Assert.assertTrue(registerPage.isDisplyedContinueButton());
+
+		loginPage = registerPage.clickToLinkLogin();
 
 		loginPage.sendkeyTextBox("Email", email);
 		loginPage.sendkeyTextBox("Password", passWord);
@@ -46,6 +62,8 @@ public class AdvencedSearch extends BaseTest{
 	public void TC_01_Search_Empty_Data(Method method){
 		ExtentTestManager.startTest(method.getName(),"Search Empty Data");
 		ExtentTestManager.getTest().log(Status.INFO,"Step 01: click Search");
+		ExtentTestManager.getTest().log(Status.INFO, "Email: "+email);
+		ExtentTestManager.getTest().log(Status.INFO, "Pass word: "+passWord);
 		advencedSearchPage.clickSearchButton();
 		ExtentTestManager.getTest().log(Status.INFO,"Step 02: Verify message error");
 		verifyEquals(advencedSearchPage.getMessageError("warning"),"Search term minimum length is 3 characters");
@@ -71,7 +89,6 @@ public class AdvencedSearch extends BaseTest{
 		verifyTrue(advencedSearchPage.quantityProduct()>=1);
 		for(WebElement nameProduct : advencedSearchPage.getNameManyProduct()){
 			verifyTrue(nameProduct.getText().contains("Lenovo"));
-			System.out.println(nameProduct.getText());
 		}
 	}
 	@Test

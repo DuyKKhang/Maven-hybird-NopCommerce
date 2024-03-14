@@ -19,6 +19,7 @@ public class DetailsCustomersAdminPageObject extends BasePage {
 
     public void editInformation(String value, String dynamic) {
         waitForElementVisible(DetailsCustomersAdminPageUIs.INFORMATION_EDIT_TEXTBOX,dynamic);
+        scrollToElement(DetailsCustomersAdminPageUIs.INFORMATION_EDIT_TEXTBOX,dynamic);
         sendkeyToElement(DetailsCustomersAdminPageUIs.INFORMATION_EDIT_TEXTBOX, value, dynamic);
     }
 
@@ -73,11 +74,22 @@ public class DetailsCustomersAdminPageObject extends BasePage {
     public void clickEditAddress(String dynamic) {
         waitForElementVisible(DetailsCustomersAdminPageUIs.EDIT_ADDRESSES,dynamic);
         clickToElementByJS(DetailsCustomersAdminPageUIs.EDIT_ADDRESSES,dynamic);
-        acceptAlert();
+
     }
 
     public String getMessageTableNoData() {
         waitForElementVisible(DetailsCustomersAdminPageUIs.MESSAGE_TABLE_NO_DATA);
         return getTextElement(DetailsCustomersAdminPageUIs.MESSAGE_TABLE_NO_DATA);
+    }
+
+    public void inputTextAreaInformationCustomer(String value, String dynamic) {
+        waitForElementVisible(CustomersAdminPageUIs.TEXTAREA_INFORMATION_CUSTOMER_TEXT_BOX, dynamic);
+        sendkeyToElement(CustomersAdminPageUIs.TEXTAREA_INFORMATION_CUSTOMER_TEXT_BOX, value, dynamic);
+    }
+
+    public void clickDeleteAddress() {
+        waitForElementVisible(DetailsCustomersAdminPageUIs.DELETE_ADDRESSES);
+        clickToElement(DetailsCustomersAdminPageUIs.DELETE_ADDRESSES);
+        acceptAlert();
     }
 }

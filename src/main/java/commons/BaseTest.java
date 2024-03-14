@@ -58,10 +58,10 @@ public class BaseTest{
 		String cmd = null;
 		try {
 			String osName = System.getProperty("os.name").toLowerCase();
-			System.out.println("OS name = " + osName);
+//			System.out.println("OS name = " + osName);
 			
 			String driverInstanceName = driver.toString().toLowerCase();
-			System.out.println("Driver instance name = " + driverInstanceName);
+//			System.out.println("Driver instance name = " + driverInstanceName);
 			
 			String browserDriverName = null;
 

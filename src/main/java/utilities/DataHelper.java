@@ -1,6 +1,7 @@
 package utilities;
 
 import java.util.Locale;
+import java.util.Random;
 
 import com.github.javafaker.Faker;
 
@@ -38,4 +39,10 @@ public class DataHelper {
 	public static String getPassWord() {
 		return fakes.internet().password(9, 12, true, true);
 	}
+
+	public static int random(){
+		Random random = new Random();
+		return random.nextInt(99999);
+	}
+
 }
