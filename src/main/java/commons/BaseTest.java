@@ -3,6 +3,7 @@ package commons;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import factoryEnvironment.BrowserStackFactory;
 import org.openqa.selenium.WebDriver;
 
 import factoryEnvironment.EnvironmentList;
@@ -11,20 +12,23 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 public class BaseTest{
-	
+
 	private ThreadLocal<WebDriver> driver = new ThreadLocal<WebDriver>();
 	public WebDriver getDriverIntance() {
 		return driver.get();
 	}
-	protected WebDriver getBrowserDriver(String evnName,String serverName, String browser) {
+	protected WebDriver getBrowserDriver(String evnName,String serverName, String browser, String os, String os_version) {
 		switch (evnName) {
 		case "local":
 			driver.set(new LocalFactory(browser).createDriver());
 			break;
 
+		case "browserStack":
+			driver.set(new BrowserStackFactory(browser, os, os_version).createDriver());
+			break;
+
 		}
-		
-		
+
 		driver.get().manage().timeouts().implicitlyWait(GlobalConstants.getGlobalConstants().getLongTimeOut(), TimeUnit.SECONDS);
 		driver.get().get(getEnvironmentUrl(serverName));
 		return driver.get();

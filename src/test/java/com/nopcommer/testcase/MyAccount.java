@@ -34,8 +34,8 @@ public class MyAccount extends BaseTest {
 
     @Parameters({"evnName", "serverName", "browser"})
     @BeforeClass
-    public void beforeClass(String evnName, String serverName, String browser) {
-        driver = getBrowserDriver(evnName, serverName, browser);
+    public void beforeClass(@Optional("local") String evnName,@Optional("dev") String serverName, String browser, String os, String os_version) {
+        driver = getBrowserDriver(evnName, serverName, browser, os, os_version);
 
         homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 

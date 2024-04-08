@@ -1,18 +1,18 @@
 package com.nopcommer.testcase;
 
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import commons.BaseTest;
 import commons.PageGeneratorManagerUser;
 import dataUser.UserData;
 import pageObject.NopCommerUser.HomePageObject;
 import pageObject.NopCommerUser.RegisterPageObject;
+import reportConfig.ExtentTestManager;
 
+import java.lang.reflect.Method;
 import java.util.Random;
 
 
@@ -23,10 +23,10 @@ public class Register extends BaseTest{
 	private RegisterPageObject registerPage;
 	private String firstName, lastName, email, passWord, confirmPasss;
 	
-	@Parameters({"evnName", "serverName", "browser"})
+	@Parameters({"evnName", "serverName", "browser", "os", "os_version","ipAddress","port"})
 	@BeforeClass
-	public void beforeClass(String evnName,String serverName, String browser) {
-		driver = getBrowserDriver(evnName, serverName, browser);
+	public void beforeClass(@Optional("local") String evnName,@Optional("dev") String serverName, String browser, String os, String os_version) {
+		driver = getBrowserDriver(evnName, serverName, browser, os, os_version);
 		
 		homePage = PageGeneratorManagerUser.getHomePageObject(driver);
 
@@ -39,7 +39,8 @@ public class Register extends BaseTest{
 	}
 	
 	@Test
-	public void TC_01_Register_With_Empty_Data(){
+	public void TC_01_Register_With_Empty_Data(Method method){
+		ExtentTestManager.startTest(method.getName(),"TC_01_Register_With_Empty_Data");
 		registerPage = homePage.clickToRegister();
 		registerPage.clickButtonRegister();
 		Assert.assertEquals(registerPage.getTextMessageError("FirstName-error"), "First name is required.");

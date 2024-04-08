@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--<suite parallel="tests" thread-count ="3" name="Run NopCommer" preserve-order="true">-->
-<suite name="Run NopCommer" preserve-order="true">
+<suite parallel="tests" thread-count ="3" name="Run NopCommer" preserve-order="true">
+<!--<suite name="Run NopCommer" preserve-order="true">-->
     <listeners>
         <listener class-name="reportConfig.ExtentTestListener"/>
         <listener class-name="commons.MethodListener"/>
@@ -12,86 +12,91 @@
     <!--			<parameter name="serverName" value="dev"/>-->
     <!--			<parameter name="browser" value="firefox"/>-->
     <!--			<class name="dataUser.RegisterSuccessful"/>-->
-
     <!--		</classes>-->
     <!--	</test>-->
 
-    <test name="Test run firefox AdvencedSearch">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="dev"/>
-            <parameter name="browser" value="firefox"/>
+<!--    <test name="Test run firefox AdvencedSearch">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="dev"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.AdvencedSearch"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-            <class name="com.nopcommer.testcase.AdvencedSearch"/>
+<!--	<test name="Test run local firefox Register">-->
+<!--		<classes>-->
+<!--			<parameter name="evnName" value="local"/>-->
+<!--			<parameter name="serverName" value="dev"/>-->
+<!--			<parameter name="browser" value="firefox"/>-->
+<!--			<class name="com.nopcommer.testcase.Register"/>-->
+<!--		</classes>-->
+<!--	</test>-->
 
-        </classes>
-    </test>
-
-	<test name="Test run firefox Register">
+	<test name="Test run Browser Stack firefox Register">
 		<classes>
-			<parameter name="evnName" value="local"/>
-			<parameter name="serverName" value="dev"/>
-			<parameter name="browser" value="firefox"/>
-			<class name="com.nopcommer.testcase.Register"/>
+            <parameter name="evnName" value="browserStack"/>
+            <parameter name="serverName" value="dev"/>
+            <parameter name="browser" value="Chrome"/>
+            <parameter name="os" value="Windows"/>
+            <parameter name="os_version" value="11"/>
 
+			<class name="com.nopcommer.testcase.Register"/>
 		</classes>
 	</test>
 
-    <test name="Test run firefox Login">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="dev"/>
-            <parameter name="browser" value="firefox"/>
+<!--    <test name="Test run firefox Login">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="dev"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.Login"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-            <class name="com.nopcommer.testcase.Login"/>
+<!--    <test name="Test run firefox MyAccount">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="dev"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.MyAccount"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-        </classes>
-    </test>
-    <test name="Test run firefox MyAccount">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="dev"/>
-            <parameter name="browser" value="firefox"/>
-            <class name="com.nopcommer.testcase.MyAccount"/>
+<!--    <test name="Test run firefox Order">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="dev"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.Order"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-        </classes>
-    </test>
-    <test name="Test run firefox Order">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="dev"/>
-            <parameter name="browser" value="firefox"/>
-            <class name="com.nopcommer.testcase.Order"/>
+<!--    <test name="Test run firefox Sort_Display_Paging">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="dev"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.Sort_Display_Paging"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-        </classes>
-    </test>
+<!--    <test name="Test run firefox WishList_Compare_RecentView">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="dev"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.WishList_Compare_RecentView"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="Test run firefox Sort_Display_Paging">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="dev"/>
-            <parameter name="browser" value="firefox"/>
-            <class name="com.nopcommer.testcase.Sort_Display_Paging"/>
-
-        </classes>
-    </test>
-    <test name="Test run firefox WishList_Compare_RecentView">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="dev"/>
-            <parameter name="browser" value="firefox"/>
-            <class name="com.nopcommer.testcase.WishList_Compare_RecentView"/>
-
-        </classes>
-    </test>
-
-    <test name="Test run firefox Admin">
-        <classes>
-            <parameter name="evnName" value="local"/>
-            <parameter name="serverName" value="admin"/>
-            <parameter name="browser" value="firefox"/>
-            <class name="com.nopcommer.testcase.Admin"/>
-        </classes>
-    </test>
+<!--    <test name="Test run firefox Admin">-->
+<!--        <classes>-->
+<!--            <parameter name="evnName" value="local"/>-->
+<!--            <parameter name="serverName" value="admin"/>-->
+<!--            <parameter name="browser" value="firefox"/>-->
+<!--            <class name="com.nopcommer.testcase.Admin"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>
